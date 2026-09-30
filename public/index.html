@@ -33,18 +33,13 @@
 
     .page {
       min-height: 100vh;
-      position: relative;
-      padding: 0 28px;
+      padding: 30px 28px 60px;
+      background: #000000;
     }
 
-    /*
-      The title sits around the vertical centre
-      of the link cards.
-    */
     .brand {
-      position: absolute;
-      left: 28px;
-      top: 96px;
+      display: block;
+      width: fit-content;
 
       color: #ffffff;
       text-decoration: none;
@@ -52,17 +47,15 @@
       font-size: 25px;
       font-weight: 600;
       letter-spacing: -0.03em;
-
-      white-space: nowrap;
     }
 
-    .brand:hover {
+    .brand:hover,
+    .brand:focus-visible {
       opacity: 0.7;
     }
 
     main {
-      padding-top: 42px;
-      padding-bottom: 60px;
+      padding-top: 30px;
     }
 
     .links {
@@ -98,10 +91,12 @@
         transform 160ms ease;
     }
 
-    .link-card:hover {
+    .link-card:hover,
+    .link-card:focus-visible {
       background: #121212;
       border-color: var(--blue-hover);
       transform: translateY(-2px);
+      outline: none;
     }
 
     .link-card:active {
@@ -123,30 +118,19 @@
 
     .icon img {
       display: block;
-
       width: 30px;
       height: 30px;
-
       object-fit: contain;
     }
 
-    /*
-      Simple Icons are already monochrome.
-    */
     .simple-icon {
       filter: brightness(0) invert(1);
     }
 
-    /*
-      Official guns.lol logo asset.
-      Filtered so it appears completely monochrome.
-    */
     .guns-logo {
       width: 34px !important;
       height: 34px !important;
-
       object-fit: contain;
-
       filter:
         grayscale(1)
         brightness(0)
@@ -185,17 +169,15 @@
 
     @media (max-width: 600px) {
       .page {
-        padding: 0 20px;
+        padding: 20px 20px 50px;
       }
 
       .brand {
-        left: 20px;
-        top: 75px;
         font-size: 22px;
       }
 
       main {
-        padding-top: 28px;
+        padding-top: 24px;
       }
 
       .links {
@@ -245,7 +227,6 @@
           </span>
         </a>
 
-
         <!-- FACEIT -->
         <a
           class="link-card"
@@ -266,7 +247,6 @@
             <span class="username">opel</span>
           </span>
         </a>
-
 
         <!-- GitHub -->
         <a
@@ -289,7 +269,6 @@
           </span>
         </a>
 
-
         <!-- guns.lol -->
         <a
           class="link-card"
@@ -310,7 +289,6 @@
             <span class="username">opelascona</span>
           </span>
         </a>
-
 
         <!-- TikTok -->
         <a
@@ -339,5 +317,4 @@
   </div>
 
 </body>
-</html>
 </html>
