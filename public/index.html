@@ -211,72 +211,70 @@
       grid-column: 1 / -1;
     }
 
-    .repos-title {
-      margin: 0 0 14px;
+    .languages {
+      margin-bottom: 28px;
+      padding: 24px;
+      background: rgba(11, 11, 11, 0.92);
+      border: 3px solid var(--grey);
+      border-radius: 18px;
+    }
+
+    .languages-title {
+      margin: 0 0 18px;
       color: #ffffff;
       font-size: 24px;
       font-weight: 600;
       letter-spacing: -0.03em;
     }
 
-    .repo-list {
+    .languages-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+      gap: 12px;
     }
 
-    .repo-card {
+    .language-group {
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+    }
+
+    .language-label {
+      margin-bottom: 10px;
+      color: #777777;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .language-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 8px;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .language-item:first-of-type {
+      margin-top: 0;
+    }
+
+    .language-logo {
+      width: 22px;
+      height: 22px;
+      flex: 0 0 22px;
       display: block;
-      min-height: 120px;
-      padding: 20px;
-      color: #ffffff;
-      background: rgba(11, 11, 11, 0.92);
-      border: 3px solid var(--grey);
-      border-radius: 18px;
-      text-decoration: none;
-      transition:
-        background 160ms ease,
-        border-color 160ms ease,
-        transform 160ms ease;
+      object-fit: contain;
     }
 
-    .repo-card:hover,
-    .repo-card:focus-visible {
-      background: rgba(18, 18, 18, 0.95);
-      border-color: var(--grey-hover);
-      transform: translateY(-2px);
-      outline: none;
-    }
-
-    .repo-name {
-      overflow: hidden;
-      color: #ffffff;
-      font-size: 17px;
-      font-weight: 600;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .repo-description {
-      display: -webkit-box;
-      overflow: hidden;
-      margin-top: 7px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.45;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3;
-    }
-
-    .repo-meta {
-      margin-top: 12px;
-      color: #666666;
-      font-size: 12px;
-    }
-
-    .loading {
-      color: var(--muted);
-      font-size: 14px;
+    .language-logo.svg-logo {
+      width: 23px;
+      height: 23px;
+      filter: grayscale(1) brightness(0) invert(1);
     }
 
     @media (max-width: 850px) {
@@ -289,7 +287,7 @@
         gap: 35px;
       }
 
-      .repo-list {
+      .languages-grid {
         grid-template-columns: 1fr 1fr;
       }
     }
@@ -307,7 +305,7 @@
         padding-top: 24px;
       }
 
-      .repo-list {
+      .languages-grid {
         grid-template-columns: 1fr;
       }
 
@@ -324,10 +322,7 @@
         padding: 18px;
       }
 
-      .repo-card {
-        min-height: 94px;
-        padding: 18px;
-      }
+
     }
   </style>
 </head>
@@ -442,7 +437,7 @@
 
       </section>
 
-      <section class="right-column" aria-label="About me and GitHub repositories">
+      <section class="right-column" aria-label="About me and languages">
 
         <section class="about" aria-label="About me">
 
@@ -454,7 +449,7 @@
 
             <div class="about-item">
               <div class="about-label">Age</div>
-              <div class="about-value" id="age"></div>
+              <div class="about-value">15</div>
             </div>
 
             <div class="about-item">
@@ -472,11 +467,58 @@
           </div>
         </section>
 
-        <h2 class="repos-title">Repos</h2>
+        <section class="languages" aria-label="Languages">
 
-        <div class="repo-list" id="repo-list">
-          <div class="loading">Loading repositories...</div>
-        </div>
+          <h2 class="languages-title">Languages which I am learning:</h2>
+
+          <div class="languages-grid">
+
+            <div class="language-group">
+              <div class="language-label">Coding</div>
+
+              <div class="language-item">
+                <img
+                  class="language-logo svg-logo"
+                  src="https://cdn.simpleicons.org/javascript/ffffff"
+                  alt="JavaScript"
+                >
+                <span>JavaScript</span>
+              </div>
+
+              <div class="language-item">
+                <img
+                  class="language-logo svg-logo"
+                  src="https://cdn.simpleicons.org/gnubash/ffffff"
+                  alt="ShellScript"
+                >
+                <span>ShellScript</span>
+              </div>
+            </div>
+
+            <div class="language-group">
+              <div class="language-label">Human</div>
+
+              <div class="language-item">
+                <img
+                  class="language-logo"
+                  src="https://flagcdn.com/w40/ru.png"
+                  alt="Russian flag"
+                >
+                <span>Russian</span>
+              </div>
+
+              <div class="language-item">
+                <img
+                  class="language-logo"
+                  src="https://flagcdn.com/w40/va.png"
+                  alt="Vatican City flag"
+                >
+                <span>Latin</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
 
       </section>
 
@@ -484,105 +526,7 @@
 
   </div>
 
-  <script>
-    function updateAge() {
-      const birthDate = new Date(2011, 1, 16);
-      const today = new Date();
 
-      let age = today.getFullYear() - birthDate.getFullYear();
-
-      const birthdayThisYear = new Date(
-        today.getFullYear(),
-        birthDate.getMonth(),
-        birthDate.getDate()
-      );
-
-      if (today < birthdayThisYear) {
-        age--;
-      }
-
-      document.getElementById("age").textContent = age;
-    }
-
-    async function loadRepos() {
-      const list = document.getElementById("repo-list");
-
-      try {
-        const response = await fetch(
-          "https://api.github.com/users/xfwmk/repos?sort=updated&direction=desc&per_page=4"
-        );
-
-        if (!response.ok) {
-          throw new Error("GitHub API request failed");
-        }
-
-        const repos = await response.json();
-
-        if (!repos.length) {
-          list.innerHTML = `
-            <a
-              class="repo-card"
-              href="https://github.com/xfwmk?tab=repositories"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div class="repo-name">No repositories found</div>
-            </a>
-          `;
-          return;
-        }
-
-        list.innerHTML = repos.slice(0, 4).map(repo => `
-          <a
-            class="repo-card"
-            href="${repo.html_url}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div class="repo-name">${escapeHtml(repo.name)}</div>
-
-            ${
-              repo.description
-                ? `<div class="repo-description">${escapeHtml(repo.description)}</div>`
-                : ""
-            }
-
-            <div class="repo-meta">
-              ${repo.language ? escapeHtml(repo.language) : "Repository"}
-              ${repo.stargazers_count ? ` · ★ ${repo.stargazers_count}` : ""}
-            </div>
-          </a>
-        `).join("");
-
-      } catch (error) {
-        list.innerHTML = `
-          <a
-            class="repo-card"
-            href="https://github.com/xfwmk?tab=repositories"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div class="repo-name">View repositories</div>
-            <div class="repo-description">
-              Unable to load repositories right now.
-            </div>
-          </a>
-        `;
-      }
-    }
-
-    function escapeHtml(value) {
-      return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    }
-
-    updateAge();
-    loadRepos();
-  </script>
 
 </body>
 </html>
