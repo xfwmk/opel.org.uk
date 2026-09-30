@@ -564,7 +564,34 @@
     }
 
     loadRepos();
+
+    // Automatically scale the entire existing layout on wider screens.
+    // The layout itself is unchanged; this only changes its visual scale.
+    const baseViewportWidth = 1650;
+    const maxScale = 1.35;
+
+    function scalePage() {
+      const page = document.querySelector(".page");
+      if (!page) return;
+
+      // Keep the original size at or below the reference width.
+      const scale = Math.min(
+        maxScale,
+        Math.max(1, window.innerWidth / baseViewportWidth)
+      );
+
+      page.style.transform = `scale(${scale})`;
+      page.style.transformOrigin = "top left";
+      page.style.width = `${100 / scale}%`;
+
+      // Prevent the scaled page from creating an incorrect vertical layout.
+      page.style.minHeight = `${100 / scale}vh`;
+    }
+
+    window.addEventListener("resize", scalePage, { passive: true });
+    scalePage();
   </script>
 
 </body>
+</html>
 </html>
