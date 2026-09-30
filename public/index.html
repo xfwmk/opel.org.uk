@@ -486,24 +486,6 @@
   </div>
 
   <script>
-    function updateAge() {
-      const birthDate = new Date(2011, 1, 16);
-      const today = new Date();
-
-      let age = today.getFullYear() - birthDate.getFullYear();
-
-      const birthdayThisYear = new Date(
-        today.getFullYear(),
-        birthDate.getMonth(),
-        birthDate.getDate()
-      );
-
-      if (today < birthdayThisYear) {
-        age--;
-      }
-
-      document.getElementById("age").textContent = age;
-    }
 
     async function loadRepos() {
       const list = document.getElementById("repo-list");
@@ -581,7 +563,6 @@
         .replace(/'/g, "&#039;");
     }
 
-    updateAge();
     loadRepos();
   </script>
 
