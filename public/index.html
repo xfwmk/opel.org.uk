@@ -67,6 +67,22 @@
       text-decoration: none;
     }
 
+    .disclaimer-link {
+      position: fixed;
+      bottom: 18px;
+      left: 20px;
+      color: #666666;
+      font-size: 12px;
+      text-decoration: none !important;
+      opacity: 0.7;
+      z-index: 10;
+      transition: opacity 160ms ease, color 160ms ease;
+    }
+    .disclaimer-link:hover {
+      opacity: 1;
+      color: #999999;
+    }
+
     main {
       display: grid;
       grid-template-columns: 365px minmax(0, 1fr);
@@ -498,11 +514,11 @@
           <div class="loading">Loading repositories...</div>
         </div>
 
-      </section>
+            </section>
+              </main>
 
-    </main>
-
-  </div>
+              <a class="disclaimer-link" href="https://opel.org.uk/disclaimer">Disclaimer</a>
+            </div>
 
   <script>
 
