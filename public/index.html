@@ -67,17 +67,25 @@
       text-decoration: none;
     }
 
-    .disclaimer-link {
-      position: fixed;
-      bottom: 18px;
-      left: 20px;
-      color: #666666;
-      font-size: 12px;
-      text-decoration: none !important;
-      opacity: 0.7;
-      z-index: 10;
-      transition: opacity 160ms ease, color 160ms ease;
-    }
+    .disclaimer-links {
+    position: fixed;
+    bottom: 18px;
+    left: 20px;
+    right: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    
+    z-index: 10;
+}
+
+.disclaimer-link {
+    color: #666666;
+    font-size: 12px;
+    text-decoration: none !important;
+    opacity: 0.7;
+    transition: opacity 160ms ease, color 160ms ease;
+}
     .disclaimer-link:hover {
       opacity: 1;
       color: #999999;
@@ -641,8 +649,10 @@
       </section>
     </main>
 
-    <a class="disclaimer-link" href="https://opel.org.uk/disclaimer">Disclaimer</a>
-  </div>
+    <div class="disclaimer-links">
+    <a class="disclaimer-link" href="https://opel.org.uk/ru">Russian</a>
+    <a class="disclaimer-link" href="https://opel.org.uk/es">Spanish</a>
+</div>
 
   <script>
 
