@@ -699,45 +699,36 @@
 </body>
 <script>
   (function () {
-    const WORKER_URL = "https://steam-status.k11987rn.workers.dev/"; // <-- your Worker URL
+    const WORKER_URL = "https://steam-status.k11987rn.workers.dev";
 
     const box = document.getElementById("steam-status");
     const avatar = document.getElementById("steam-avatar");
     const nameEl = document.getElementById("steam-name");
     const stateEl = document.getElementById("steam-state");
 
-    function get(doc, tag) {
-      const el = doc.querySelector(tag);
-      return el ? el.textContent.trim() : "";
-    }
-
     async function updateSteam() {
       try {
         const res = await fetch(WORKER_URL + "?t=" + Date.now());
-        if (!res.ok) throw new Error("bad response");
-        const doc = new DOMParser().parseFromString(await res.text(), "text/xml");
-        if (!doc.querySelector("steamID")) throw new Error("no profile data");
+        const p = await res.json();
+        if (!res.ok || p.error || !p.personaname) throw new Error(p.error || "no profile data");
 
-        const state = get(doc, "onlineState") || "offline";
-        const game = get(doc, "inGameInfo gameName");
-        const message = get(doc, "stateMessage").replace(/<br\s*\/?>/gi, " ").trim();
-        const icon = get(doc, "avatarFull");
+        nameEl.textContent = p.personaname;
+        if (p.avatarfull) avatar.src = p.avatarfull;
 
-        nameEl.textContent = get(doc, "steamID") || "opelascona";
-        if (icon) avatar.src = icon;
-        box.dataset.state = state;
-
-        if (state === "in-game") {
-          stateEl.textContent = game ? "Playing " + game : "In-Game";
-        } else if (state === "online") {
+        if (p.gameextrainfo) {
+          box.dataset.state = "in-game";
+          stateEl.textContent = "Playing " + p.gameextrainfo;
+        } else if (p.personastate > 0) {
+          box.dataset.state = "online";
           stateEl.textContent = "Online";
         } else {
-          stateEl.textContent = message || "Offline";
+          box.dataset.state = "offline";
+          stateEl.textContent = "Offline";
         }
       } catch (e) {
         box.dataset.state = "offline";
         nameEl.textContent = "opelascona";
-        stateEl.textContent = "Status unavailable";
+        stateEl.textContent = "Err: " + e.message;
       }
     }
 
