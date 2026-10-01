@@ -367,6 +367,68 @@
         text-decoration: none !important;
       }
   </style>
+  <style>
+  .steam-status {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 270px;
+    padding: 14px 16px;
+    color: #ffffff;
+    background: rgba(11, 11, 11, 0.92);
+    border: 3px solid var(--grey);
+    border-radius: 18px;
+    transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+    z-index: 5;
+  }
+  .steam-status:hover,
+  .steam-status:focus-visible {
+    background: rgba(18, 18, 18, 0.95);
+    border-color: var(--grey-hover);
+    transform: translateY(-2px);
+    outline: none;
+  }
+  .steam-avatar {
+    width: 52px;
+    height: 52px;
+    flex: 0 0 52px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    object-fit: cover;
+    border: 2px solid #666666;
+  }
+  .steam-status[data-state="online"] .steam-avatar { border-color: #57cbde; }
+  .steam-status[data-state="in-game"] .steam-avatar { border-color: #90ba3c; }
+  .steam-info { min-width: 0; display: flex; flex-direction: column; }
+  .steam-name {
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .steam-state {
+    margin-top: 3px;
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 13px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .steam-status[data-state="online"] .steam-state { color: #57cbde; }
+  .steam-status[data-state="in-game"] .steam-state { color: #90ba3c; }
+
+  @media (max-width: 600px) {
+    .steam-status { top: 18px; right: 20px; width: 210px; padding: 10px 12px; gap: 10px; }
+    .steam-avatar { width: 42px; height: 42px; flex-basis: 42px; }
+    .steam-name { font-size: 14px; }
+    .steam-state { font-size: 12px; }
+  }
+</style>
 </head>
 
 <body>
@@ -374,7 +436,14 @@
   <div class="page">
 
     <div class="brand">𖦏 opel</div>
-
+<a class="steam-status" id="steam-status" data-state="offline"
+   href="https://steamcommunity.com/id/opelascona" target="_blank" rel="noopener noreferrer">
+  <img class="steam-avatar" id="steam-avatar" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+  <span class="steam-info">
+    <span class="steam-name" id="steam-name">Loading...</span>
+    <span class="steam-state" id="steam-state">Checking status...</span>
+  </span>
+</a>
     <main>
 
       <section class="links" aria-label="Social links">
@@ -628,5 +697,53 @@
   </script>
 
 </body>
+<script>
+  (function () {
+    const WORKER_URL = "https://steam-status.YOURNAME.workers.dev"; // <-- your Worker URL
+
+    const box = document.getElementById("steam-status");
+    const avatar = document.getElementById("steam-avatar");
+    const nameEl = document.getElementById("steam-name");
+    const stateEl = document.getElementById("steam-state");
+
+    function get(doc, tag) {
+      const el = doc.querySelector(tag);
+      return el ? el.textContent.trim() : "";
+    }
+
+    async function updateSteam() {
+      try {
+        const res = await fetch(WORKER_URL + "?t=" + Date.now());
+        if (!res.ok) throw new Error("bad response");
+        const doc = new DOMParser().parseFromString(await res.text(), "text/xml");
+        if (!doc.querySelector("steamID")) throw new Error("no profile data");
+
+        const state = get(doc, "onlineState") || "offline";
+        const game = get(doc, "inGameInfo gameName");
+        const message = get(doc, "stateMessage").replace(/<br\s*\/?>/gi, " ").trim();
+        const icon = get(doc, "avatarFull");
+
+        nameEl.textContent = get(doc, "steamID") || "opelascona";
+        if (icon) avatar.src = icon;
+        box.dataset.state = state;
+
+        if (state === "in-game") {
+          stateEl.textContent = game ? "Playing " + game : "In-Game";
+        } else if (state === "online") {
+          stateEl.textContent = "Online";
+        } else {
+          stateEl.textContent = message || "Offline";
+        }
+      } catch (e) {
+        box.dataset.state = "offline";
+        nameEl.textContent = "opelascona";
+        stateEl.textContent = "Status unavailable";
+      }
+    }
+
+    updateSteam();
+    setInterval(updateSteam, 60000);
+  })();
+</script>
 </html>
 </html>
