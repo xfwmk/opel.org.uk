@@ -1,22 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lyrics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> 𖦏 opel</title>
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            font-size: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+  <style>
+    a,
+    a:hover,
+    a:focus,
+    a:active,
+    a:visited {
+      text-decoration: none;
+    }
+    :root {
+      color-scheme: dark;
+      --text: #ffffff;
+      --muted: #888888;
+      --card: #0b0b0b;
+      --grey: #666666;
+      --grey-hover: #999999;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background:
+        #000000
+        url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapers.com%2Fimages%2Fhd%2Fabstract-black-grey-waves-background-shkpekaewx4mtd1k.jpg&f=1&nofb=1&ipt=54912c348bdb3d5c3b35a524b865013ea72a07a7129b5bd230835dc65f7378a4&ipo=images")
+        center center / cover fixed no-repeat;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 30px 40px 60px;
+    }
+
+    .brand {
+      display: block;
+      width: fit-content;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 25px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+
+    .brand {
+      text-decoration: none;
+    }
+
+    .brand:hover,
+    .brand:focus-visible {
+      opacity: 0.7;
+      text-decoration: none;
+    }
 
         .lyrics {
             width: 80%;
