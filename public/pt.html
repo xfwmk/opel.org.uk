@@ -800,15 +800,15 @@
       </span>
       <span class="steam-info">
         <span class="steam-label">Steam</span>
-        <span class="steam-name" id="steam-name">Cargando...</span>
-        <span class="steam-state" id="steam-state">Comprobando o estado...</span>
+        <span class="steam-name" id="steam-name">Carregando...</span>
+        <span class="steam-state" id="steam-state">Verificando o estado...</span>
       </span>
     </a>
 
         <section class="stats-card languages-card" aria-label="Coding languages">
-          <h2 class="stats-card-title">Linguas en GitHub</h2>
+          <h2 class="stats-card-title">Línguas en GitHub</h2>
           <div class="languages-list" id="languages-list">
-            <div class="loading">Comprobando os linguas...</div>
+            <div class="loading">Verificando os línguas...</div>
           </div>
         </section>
 
@@ -823,37 +823,37 @@
           <div class="about-grid">
 
             <div class="about-item">
-              <div class="about-label">Linguas</div>
-              <div class="about-value">🇷🇺 Russian · 🇪🇸 Spanish · 🇮🇷 Persian</div>
+              <div class="about-label">Línguas</div>
+              <div class="about-value">🇷🇺 Russo · 🇪🇸 Espanhol · 🇮🇷 Persa</div>
             </div>
 
             <div class="about-item">
-              <div class="about-label">Estatísticas de Counter-Strike</div>
-              <div class="about-value">Clasificación máxima: 29.697 Premier</div>
-              <div class="about-value">Os 600 mellores do mundo</div>
+              <div class="about-label">Estatísticas do Counter-Strike</div>
+              <div class="about-value">Classificação máxima: 29.697 Premier</div>
+              <div class="about-value">Top 600 mundial</div>
             </div>
 
             <div class="about-item interests">
               <div class="about-label">Os meus intereses</div>
               <div class="about-value">
-                Codificación · Counter-Strike · Fútbol
+                Codificación · Counter-Strike · Futebol
               </div>
             </div>
 
           </div>
         </section>
 
-        <h2 class="repos-title">Proxectos recentes: </h2>
+        <h2 class="repos-title">Projectos recentes: </h2>
 
         <div class="repo-list" id="repo-list">
-          <div class="loading">Cargando repositorios...</div>
+          <div class="loading">Carregando repositorios...</div>
         </div>
 
       </section>
     </main>
 
     <div class="disclaimer-links">
-    <a class="disclaimer-link" href="https://opel.org.uk/languages">Linguas</a>
+    <a class="disclaimer-link" href="https://opel.org.uk/languages">Línguas</a>
 </div>
 
   <script>
@@ -1162,13 +1162,13 @@
 
           if (p.gameextrainfo) {
             box.dataset.state = "in-game";
-            stateEl.textContent = "Xugando " + p.gameextrainfo;
+            stateEl.textContent = "Brincar " + p.gameextrainfo;
           } else if (p.personastate > 0) {
             box.dataset.state = "online";
-            stateEl.textContent = "En liña";
+            stateEl.textContent = "Em linha";
           } else {
             box.dataset.state = "offline";
-            stateEl.textContent = "Sen conexión";
+            stateEl.textContent = "Sen conexão";
           }
         } catch (e) {
           box.dataset.state = "offline";
