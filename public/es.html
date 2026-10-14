@@ -858,8 +858,6 @@
 
   <script>
 
-    // Share and cache GitHub repository data so the page does not make
-    // duplicate requests for the same information.
     const githubReposPromise = (async () => {
       const cacheKey = "opel-github-repos-v1";
       const cacheTimeKey = "opel-github-repos-time-v1";
@@ -879,7 +877,6 @@
           "https://api.github.com/users/xfwmk/repos?sort=updated&direction=desc&per_page=4"
         );
       } catch (error) {
-        // If GitHub is temporarily unreachable, use an older cached copy if one exists.
         try {
           const stale = sessionStorage.getItem(cacheKey);
           if (stale) return JSON.parse(stale);
@@ -984,11 +981,6 @@
 
         const languageTotals = {};
 
-        // Keep these requests separate from the repository request. The
-        // repository list itself is cached/shared, so loading Languages
-        // can never cause the Recent Projects request to be duplicated.
-        // Only inspect the same small set of repositories shown on the page.
-        // This keeps the page well below GitHub's unauthenticated API rate limit.
         const languageRepos = repos.slice(0, 4);
         await Promise.allSettled(
           languageRepos.map(async repo => {
@@ -1115,8 +1107,6 @@
     loadLanguages();
     loadGithubActivity();
 
-    // Automatically scale the entire existing layout on wider screens.
-    // The layout itself is unchanged; this only changes its visual scale.
     const baseViewportWidth = 1650;
     const maxScale = 1.35;
 
@@ -1124,7 +1114,6 @@
       const page = document.querySelector(".page");
       if (!page) return;
 
-      // Keep the original size at or below the reference width.
       const scale = Math.min(
         maxScale,
         Math.max(1, window.innerWidth / baseViewportWidth)
@@ -1134,7 +1123,6 @@
       page.style.transformOrigin = "top left";
       page.style.width = `${100 / scale}%`;
 
-      // Prevent the scaled page from creating an incorrect vertical layout.
       page.style.minHeight = `${100 / scale}vh`;
     }
 
