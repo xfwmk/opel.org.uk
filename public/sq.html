@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sq">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -800,15 +800,15 @@
       </span>
       <span class="steam-info">
         <span class="steam-label">Steam</span>
-        <span class="steam-name" id="steam-name">Loading...</span>
-        <span class="steam-state" id="steam-state">Checking status...</span>
+        <span class="steam-name" id="steam-name">Duke u ngarkuar...</span>
+        <span class="steam-state" id="steam-state">Duke kontrolluar statusin...</span>
       </span>
     </a>
 
         <section class="stats-card languages-card" aria-label="Coding languages">
-          <h2 class="stats-card-title">GitHub Languages</h2>
+          <h2 class="stats-card-title">Gjuhët e GitHub</h2>
           <div class="languages-list" id="languages-list">
-            <div class="loading">Loading languages...</div>
+            <div class="loading">Duke ngarkuar gjuhët...</div>
           </div>
         </section>
 
@@ -823,37 +823,37 @@
           <div class="about-grid">
 
             <div class="about-item">
-              <div class="about-label">Languages</div>
-              <div class="about-value">🇷🇺 Russian · 🇪🇸 Spanish · 🇮🇷 Persian</div>
+              <div class="about-label">Gjuhët</div>
+              <div class="about-value">🇷🇺 Ruse · 🇪🇸 Spanjisht · 🇮🇷 Persisht</div>
             </div>
 
             <div class="about-item">
-              <div class="about-label">Counter-Strike stats</div>
-              <div class="about-value">Peak rating: 29,697 Premier</div>
-              <div class="about-value">Top 600 Worldwide</div>
+              <div class="about-label">Staristikat e Counter-Strike</div>
+              <div class="about-value">Vlerësimi maksimal: 29,697 Premier</div>
+              <div class="about-value">600 më të mirët në mbarë botën</div>
             </div>
 
             <div class="about-item interests">
-              <div class="about-label">Interests</div>
+              <div class="about-label">Interesat</div>
               <div class="about-value">
-                Coding · Counter-Strike · Football
+                Kodim · Counter-Strike · Futboll
               </div>
             </div>
 
           </div>
         </section>
 
-        <h2 class="repos-title">Recent projects: </h2>
+        <h2 class="repos-title">Projektet e fundit: </h2>
 
         <div class="repo-list" id="repo-list">
-          <div class="loading">Loading repositories...</div>
+          <div class="loading">Duke ngarkuar depot...</div>
         </div>
 
       </section>
     </main>
 
     <div class="disclaimer-links">
-    <a class="disclaimer-link" href="https://opel.org.uk/languages">Languages</a>
+    <a class="disclaimer-link" href="https://opel.org.uk/languages">Gjuhët</a>
 </div>
 
   <script>
@@ -1151,13 +1151,13 @@
 
           if (p.gameextrainfo) {
             box.dataset.state = "in-game";
-            stateEl.textContent = "Playing " + p.gameextrainfo;
+            stateEl.textContent = "Duke luajtur " + p.gameextrainfo;
           } else if (p.personastate > 0) {
             box.dataset.state = "online";
-            stateEl.textContent = "Online";
+            stateEl.textContent = "Në internet";
           } else {
             box.dataset.state = "offline";
-            stateEl.textContent = "Offline";
+            stateEl.textContent = "Jashtë linje";
           }
         } catch (e) {
           box.dataset.state = "offline";
