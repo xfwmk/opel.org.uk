@@ -17,6 +17,7 @@
   const ctx = canvas.getContext('2d');
   const characters = '01';
   const fontSize = 22;
+  const columnSpacing = 35;
   let columns = [];
   let lastFrame = 0;
   let rainColor = '#00ff41';
@@ -32,7 +33,7 @@
     canvas.width = Math.round(innerWidth * dpr);
     canvas.height = Math.round(innerHeight * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    columns = Array.from({ length: Math.ceil(innerWidth / fontSize) }, () =>
+    columns = Array.from({ length: Math.ceil(innerWidth / columnSpacing) }, () =>
       -Math.random() * innerHeight / fontSize
     );
     ctx.fillStyle = '#000';
@@ -50,7 +51,7 @@
       const character = characters[Math.floor(Math.random() * characters.length)];
       const y = columns[i] * fontSize;
       ctx.fillStyle = rainColor;
-      ctx.fillText(character, i * fontSize, y);
+      ctx.fillText(character, i * columnSpacing, y);
       columns[i] += 0.6 + (i % 5) * 0.11;
       if (y > innerHeight + Math.random() * 400) columns[i] = -Math.random() * 40;
     }
