@@ -59,6 +59,26 @@
   resize();
   requestAnimationFrame(draw);
 })();
+
+const MUSIC_FILE = "matrix.mp3"; 
+
+const music = new Audio(MUSIC_FILE);
+music.loop = true;
+music.volume = 0.5;
+
+document.addEventListener("keydown", async (event) => {
+  if (event.key.toLowerCase() === "p" && !event.repeat) {
+    if (music.paused) {
+      try {
+        await music.play();
+      } catch (error) {
+        console.error("Could not play music:", error);
+      }
+    } else {
+      music.pause();
+    }
+  }
+});
 </script>
 </body>
 </html>
