@@ -1,4 +1,4 @@
-# [opel.org.uk](https://opel.org.uk/) (index)
+# [opel.org.uk](https://opel.org.uk/)
   - languages
   - map
   - es
