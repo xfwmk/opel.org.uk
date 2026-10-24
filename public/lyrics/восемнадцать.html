@@ -1,1 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>𖦏 opel</title>
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 
+  <style>
+    a,
+    a:hover,
+    a:focus,
+    a:active,
+    a:visited {
+      text-decoration: none;
+    }
+
+    :root {
+      color-scheme: dark;
+      --text: #ffffff;
+      --muted: #888888;
+      --card: #0b0b0b;
+      --grey: #666666;
+      --grey-hover: #999999;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #000000 url("wp8626219-2159384705.jpg") 
+        center center / cover fixed no-repeat;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: var(--text);
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 30px 40px 60px;
+    }
+
+    .brand {
+      display: block;
+      width: fit-content;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 25px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+
+    .brand:hover,
+    .brand:focus-visible {
+      opacity: 0.7;
+      text-decoration: none;
+    }
+
+    .lyrics {
+      width: 80%;
+      margin: 0 auto;
+      white-space: pre-wrap;
+      line-height: 1.5;
+      text-align: center;
+      font-size: 24px;
+      color: #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="lyrics">
+[Куплет 1]
+Ты сегодня взрослее стала
+И учёбу ты прогуляла
+Позвала всех своих подружек
+Только нет его, друга сердца твоего
+Знаю, ты его не забудешь
+Он придёт, его зацелуешь
+Но поцелуев ему всё мало
+Хочет он, чтоб ты сказала
+
+[Припев]
+Забирай меня скорей
+Увози за сто морей
+И целуй меня везде
+Восемнадцать мне уже
+Забирай меня скорей
+Увози за сто морей
+И целуй меня везде
+Восемнадцать мне уже
+
+[Куплет 2]
+Ты уже танцевать устала
+Эта песня сто раз играла
+Веселятся твои подружки
+Разбудили всех
+Пели песни [?]
+Все ушли, вы одни остались
+И друг другу во всём признались
+Ведь ты сегодня взрослее стала
+Наконец ему сказала
+
+[Припев]
+Забирай меня скорей
+Увози за сто морей
+И целуй меня везде
+Восемнадцать мне уже
+Забирай меня скорей
+Увози за сто морей
+И целуй меня везде
+Восемнадцать мне уже
+Забирай меня скорей
+Увози за сто морей
+И целуй меня везде
+Восемнадцать мне уже
+Забирай меня скорей
+Увози за сто морей
+И целуй меня везде
+Восемнадцать мне уже
+
+[Куплет 3]
+Знаю, ты его не забудешь
+Он придёт, его зацелуешь
+Но поцелуев ему всё мало
+Хочет он, чтоб ты ему сказала
+
+[Предприпев]
+Забирай меня скорей
+Увози за сто морей
+И целуй меня везде
+Восемнадцать мне уже
+Забирай меня скорей
+Увози за сто морей
+И целуй меня везде
+Восемнадцать мне уже
+    
+[Припев]
+Забирай меня скорей
+Увози за сто морей
+И целуй меня везде
+Восемнадцать мне уже
+Забирай меня скорей
+Увози за сто морей
+И целуй меня везде
+Восемнадцать мне уже
+Забирай меня скорей
+Увози за сто морей
+И целуй меня везде
+Восемнадцать мне уже
+Забирай меня скорей
+Увози за сто морей
+И целуй меня везде
+Восемнадцать мне уже
+  </div>
+<script>
+const MUSIC_FILE = "восемнадцать.mp3"; 
+
+const music = new Audio(MUSIC_FILE);
+music.loop = true;
+music.volume = 0.375;
+
+document.addEventListener("keydown", async (event) => {
+  if (event.key.toLowerCase() === "p" && !event.repeat) {
+    if (music.paused) {
+      try {
+        await music.play();
+      } catch (error) {
+        console.error("Could not play music:", error);
+      }
+    } else {
+      music.pause();
+    }
+  }
+});
+</script>
+</body>
+</html>
