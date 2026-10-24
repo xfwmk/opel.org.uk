@@ -8,9 +8,9 @@
   - ga
   - pt
   - fr
-#  [opel.org.uk/matrix](https://opel.org.uk/matrix/) (index)
+#  [opel.org.uk/matrix](https://opel.org.uk/matrix/)
   - binary
-#  [opel.org.uk/lyrics](https://opel.org.uk/lyrics/) (index)
+#  [opel.org.uk/lyrics](https://opel.org.uk/lyrics/)
   - nekaljubise
   - solotu
   - весна
