@@ -178,6 +178,27 @@ Ha, solo tu
 
 Solo tu
   </div>
+<script>
 
+const MUSIC_FILE = "solotu.mp3"; 
+
+const music = new Audio(MUSIC_FILE);
+music.loop = true;
+music.volume = 0.375;
+
+document.addEventListener("keydown", async (event) => {
+  if (event.key.toLowerCase() === "p" && !event.repeat) {
+    if (music.paused) {
+      try {
+        await music.play();
+      } catch (error) {
+        console.error("Could not play music:", error);
+      }
+    } else {
+      music.pause();
+    }
+  }
+});
+</script>
 </body>
 </html>
