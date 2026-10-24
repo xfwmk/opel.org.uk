@@ -2,31 +2,24 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>My World · Visited Countries</title>
+<title>𖦏 opel</title>
 <style>
-:root{color-scheme:dark;--bg:#080b11;--panel:#101722;--line:#253041;--text:#edf3fa;--muted:#8e9aab;--blue:#348cff;--land:#57616e}
+:root{color-scheme:dark;--bg:#080b11;--panel:#101722;--line:#253041;--text:#edf3fa;--muted:#8e9aab;--blue:#348cff;--land:#30343a}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
-.app{display:grid;grid-template-columns:300px minmax(0,1fr);min-height:100vh}.sidebar{background:var(--panel);border-right:1px solid var(--line);padding:32px 24px;display:flex;flex-direction:column;gap:23px;z-index:2}
+.app{display:grid;grid-template-columns:minmax(0,1fr);min-height:100vh}.sidebar{background:var(--panel);border-right:1px solid var(--line);padding:32px 24px;display:flex;flex-direction:column;gap:23px;z-index:2}
 .eyebrow{color:#70aaff;letter-spacing:.22em;text-transform:uppercase;font-size:10px;font-weight:800}.title{font-size:34px;line-height:1.05;letter-spacing:-1.6px;font-weight:800;margin:8px 0 10px}.subtitle{color:var(--muted);font-size:13px;line-height:1.65;margin:0}
 .stats{display:flex;align-items:end;gap:10px;padding:17px 0;border-block:1px solid var(--line)}.count{font-size:50px;font-weight:800;line-height:1;letter-spacing:-2px}.statlabel{font-size:12px;color:var(--muted);padding-bottom:6px}
 label{display:block;font-size:12px;font-weight:700;margin-bottom:10px}.hint{color:var(--muted);font-size:11px;line-height:1.5;margin:8px 0 0}
 textarea{width:100%;height:250px;resize:vertical;border:1px solid #334258;border-radius:12px;background:#0a1019;color:#edf3fa;padding:13px 14px;font:13px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;outline:none}textarea:focus{border-color:#348cff;box-shadow:0 0 0 3px #348cff22}
 .actions{display:flex;gap:8px;margin-top:10px}button{border:0;border-radius:9px;padding:11px 15px;font-weight:750;cursor:pointer}.primary{background:var(--blue);color:white;flex:1}.secondary{background:#253143;color:#e5edf8}.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--muted)}.legend span{display:flex;align-items:center;gap:7px}.dot{display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--land)}.dot.blue{background:var(--blue)}.footer{margin-top:auto;font-size:11px;line-height:1.6;color:#778599}
-.maparea{position:relative;overflow:hidden;display:flex;flex-direction:column;background:radial-gradient(ellipse at 52% 48%,#152133 0%,#0b1019 55%,#080b11 100%)}.maphead{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:28px 35px 0}.maphead h2{font-size:15px;letter-spacing:.01em;margin:0}.maphead small{color:var(--muted);font-size:11px}.mapwrap{flex:1;position:relative;min-height:430px}svg{display:block;width:100%;height:100%;touch-action:none}.country{fill:var(--land);stroke:#17212d;stroke-width:.55;vector-effect:non-scaling-stroke;cursor:default;transition:fill .18s}.country.visited{fill:var(--blue)}.country:hover{fill:#9ec7ff;stroke:#e7f3ff;stroke-width:1.3}.country.visited:hover{fill:#65a9ff}.tooltip{position:absolute;pointer-events:none;display:none;padding:8px 11px;border:1px solid #3a5069;border-radius:8px;background:#101a29eF;color:#fff;font-size:12px;box-shadow:0 10px 30px #0007;white-space:nowrap;z-index:3}.loading{position:absolute;inset:0;display:grid;place-items:center;color:#9aaabd;font-size:13px;text-align:center;padding:30px}.mapfoot{padding:0 35px 25px;display:flex;align-items:center;justify-content:space-between;gap:12px}.zoom{display:flex;gap:7px}.zoom button{padding:8px 12px;background:#1a2637;color:white}.error{color:#ff9999}.small{font-size:11px;color:var(--muted)}
+.maparea{position:relative;overflow:hidden;display:flex;flex-direction:column;background:radial-gradient(ellipse at 52% 48%,#152133 0%,#0b1019 55%,#080b11 100%)}.maphead{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:28px 35px 0}.maphead h2{font-size:15px;letter-spacing:.01em;margin:0}.maphead small{color:var(--muted);font-size:11px}.mapwrap{flex:1;position:relative;min-height:430px}svg{display:block;width:100%;height:100%;touch-action:none}.country{fill:var(--land);stroke:#17212d;stroke-width:.55;vector-effect:non-scaling-stroke;cursor:default;transition:fill .18s}.country.visited{fill:var(--blue)}.country:hover{fill:#717a88;stroke:#e7f3ff;stroke-width:1.3}.country.visited:hover{fill:#65a9ff}.tooltip{position:absolute;pointer-events:none;display:none;padding:8px 11px;border:1px solid #3a5069;border-radius:8px;background:#101a29eF;color:#fff;font-size:12px;box-shadow:0 10px 30px #0007;white-space:nowrap;z-index:3}.loading{position:absolute;inset:0;display:grid;place-items:center;color:#9aaabd;font-size:13px;text-align:center;padding:30px}.mapfoot{padding:0 35px 25px;display:flex;align-items:center;justify-content:space-between;gap:12px}.zoom{display:flex;gap:7px}.zoom button{padding:8px 12px;background:#1a2637;color:white}.error{color:#ff9999}.small{font-size:11px;color:var(--muted)}
 @media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{border-right:0;border-bottom:1px solid var(--line);padding:23px 20px;gap:16px}.title{font-size:27px}.stats{padding:10px 0}.count{font-size:37px}textarea{height:105px}.maparea{min-height:480px}.maphead{padding:18px 20px 0}.mapfoot{padding:0 20px 20px}.mapwrap{min-height:350px}}
 </style>
 </head>
 <body>
 <div class="app">
-<aside class="sidebar">
- <header><div class="eyebrow">Travel tracker</div><h1 class="title">My World<span style="color:#348cff">.</span></h1><p class="subtitle">Everywhere you've been, all in one place.</p></header>
- <div class="stats"><span id="count" class="count">0</span><span class="statlabel">countries visited</span></div>
- <section><label for="countries">Visited countries</label><textarea id="countries" spellcheck="false" aria-label="Visited countries, one per line"></textarea><p class="hint">One country per line. Edit this list here, or change <code>DEFAULT_VISITED</code> in the HTML source. Your changes save in this browser.</p><div class="actions"><button id="apply" class="primary">Update map</button><button id="reset" class="secondary" title="Restore countries listed in HTML">Reset</button></div></section>
- <div class="legend"><span><i class="dot blue"></i>Visited</span><span><i class="dot"></i>Not visited</span></div>
- <p class="footer">Hover over a country to see its name. Scroll to zoom, drag to move. Map outlines load from an online GeoJSON dataset.</p>
-</aside>
 <main class="maparea">
- <div class="maphead"><h2>World map</h2><small>Blue marks the places you've explored</small></div>
+ <div class="maphead"><h2>𖦏 opel</h2><small>Blue marks the places I've explored</small></div>
  <div class="mapwrap" id="mapwrap"><svg id="map" aria-label="World map highlighting visited countries" role="img"></svg><div id="loading" class="loading">Loading world map…</div><div id="tooltip" class="tooltip"></div></div>
  <div class="mapfoot"><span id="status" class="small">Grey: not visited · Blue: visited</span><div class="zoom"><button id="zoomIn" aria-label="Zoom in">+</button><button id="zoomOut" aria-label="Zoom out">−</button><button id="zoomReset" aria-label="Reset zoom">Reset view</button></div></div>
 </main>
@@ -37,11 +30,9 @@ textarea{width:100%;height:250px;resize:vertical;border:1px solid #334258;border
 const DEFAULT_VISITED = [
   'United Kingdom',
   'France',
-  'Spain',
-  'Switzerland'
+  'Spain'
 ];
 
-const STORAGE_KEY = 'opel-visited-countries-v1';
 const ALIASES = {
  'uk':'united kingdom','great britain':'united kingdom','britain':'united kingdom','england':'united kingdom','scotland':'united kingdom','wales':'united kingdom',
  'usa':'united states of america','us':'united states of america','united states':'united states of america','america':'united states of america',
@@ -60,30 +51,21 @@ const normalize = value => {
  }
  return key;
 };
-const textarea = document.getElementById('countries');
-let initial = DEFAULT_VISITED.join('\n');
-try { initial = localStorage.getItem(STORAGE_KEY) ?? initial; } catch (_) {}
-textarea.value = initial;
 let visited = new Set();
 let shapes = null;
 let geoFeatures = [];
-function currentNames(){return textarea.value.split(/[\n,;]+/).map(x=>x.trim()).filter(Boolean)}
+function currentNames(){return DEFAULT_VISITED.map(x=>String(x).trim()).filter(Boolean)}
 function updateMap(){
  const names = currentNames();
  visited = new Set(names.map(normalize));
  if (shapes) shapes.classed('visited', d=>visited.has(normalize(countryName(d))));
  const matched = new Set(geoFeatures.filter(d=>visited.has(normalize(countryName(d)))).map(d=>normalize(countryName(d))));
- document.getElementById('count').textContent = matched.size || (!geoFeatures.length ? names.length : 0);
  if (geoFeatures.length) {
    const unmatched = [...visited].filter(name=>!matched.has(name));
    document.getElementById('status').textContent = unmatched.length ? `Not found on map: ${names.filter(n=>unmatched.includes(normalize(n))).join(', ')}` : 'Grey: not visited · Blue: visited';
  }
- try { localStorage.setItem(STORAGE_KEY,textarea.value); } catch (_) {}
 }
 function countryName(feature){const p=feature.properties||{};return p.ADMIN||p.name||p.NAME||p.NAME_EN||p.SOVEREIGNT||'Unknown';}
-document.getElementById('apply').onclick=updateMap;
-textarea.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter')updateMap()});
-document.getElementById('reset').onclick=()=>{textarea.value=DEFAULT_VISITED.join('\n');updateMap()};
 updateMap();
 (async function(){
  const loading=document.getElementById('loading');
