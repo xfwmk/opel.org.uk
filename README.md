@@ -1,5 +1,4 @@
-# [opel.org.uk](https://opel.org.uk/)
-  - [^index](https://opel.org.uk/)
+# [opel.org.uk](https://opel.org.uk/) (index)
   - languages
   - es
   - ru
@@ -9,11 +8,9 @@
   - pt
   - fr
   - map
-    # - [/matrix](https://opel.org.uk/matrix/)
-      - [^index](https://opel.org.uk/matrix/)
+    # - [/matrix](https://opel.org.uk/matrix/) (index)
       - binary
-    # - [/lyrics](https://opel.org.uk/lyrics/)
-      - [^index](https://opel.org.uk/lyrics/)
+    # - [/lyrics](https://opel.org.uk/lyrics/) (index)
       - nekaljubise
       - solotu
       - весна
