@@ -9,10 +9,10 @@
   - pt
   - fr
   - map
-    # - /matrix
+    # - [/matrix](https://opel.org.uk/matrix/)
       - ^index
       - binary
-    # - /lyrics
+    # - [/lyrics](https://opel.org.uk/lyrics/)
       - index
       - nekaljubise
       - solotu
