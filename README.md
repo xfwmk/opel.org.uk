@@ -19,5 +19,4 @@
 
 # Subdomains:
   - dash.opel.org.uk
-  - terminal.opel.org.uk
   - stocks.opel.org.uk
