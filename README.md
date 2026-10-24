@@ -8,14 +8,14 @@
   - ga
   - pt
   - fr
-    #  [/matrix](https://opel.org.uk/matrix/) (index)
-      - binary
-    #  [/lyrics](https://opel.org.uk/lyrics/) (index)
-      - nekaljubise
-      - solotu
-      - весна
-      - восемнадцать
-      - целуйменя
+#  [opel.org.uk/matrix](https://opel.org.uk/matrix/) (index)
+  - binary
+#  [opel.org.uk/lyrics](https://opel.org.uk/lyrics/) (index)
+  - nekaljubise
+  - solotu
+  - весна
+  - восемнадцать
+  - целуйменя
 
 # Subdomains:
   - dash.opel.org.uk
