@@ -1,1 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lyrics</title>
 
+  <style>
+    :root {
+      color-scheme: dark;
+      --text: #ffffff;
+      --muted: #888888;
+      --card: rgba(11, 11, 11, 0.92);
+      --grey: #666666;
+      --grey-hover: #999999;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #000000 url("wp8626219-2159384705.jpg") 
+        center center / cover fixed no-repeat;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 40px 60px;
+    }
+
+    .brand {
+      display: inline-block;
+      margin-bottom: 34px;
+      color: #ffffff;
+      font-size: 25px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+    }
+
+    .brand:hover,
+    .brand:focus-visible {
+      opacity: 0.7;
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-height: 104px;
+      padding: 22px 20px;
+      color: #ffffff;
+      background: var(--card);
+      border: 3px solid var(--grey);
+      border-radius: 18px;
+      text-decoration: none;
+      transition:
+        background 160ms ease,
+        border-color 160ms ease,
+        transform 160ms ease;
+    }
+
+    .link-card:hover,
+    .link-card:focus-visible {
+      background: rgba(18, 18, 18, 0.96);
+      border-color: var(--grey-hover);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .link-card:active {
+      transform: translateY(0);
+    }
+
+    .icon {
+      display: flex;
+      flex: 0 0 48px;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border: 2px solid #777777;
+      border-radius: 14px;
+      color: #ffffff;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .site-name {
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .link-title {
+      overflow-wrap: anywhere;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 650px) {
+      .page {
+        padding: 24px 18px 40px;
+      }
+
+      .links {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a class="brand" href="#">𖦏 opel | Lyrics</a>
+
+      <a class="link-card" href="https://opel.org.uk/nekaljubise" target="_blank" rel="noopener noreferrer">
+        <span class="icon">𖦏</span>
+        <span class="details">
+          <span class="site-name">opel.org.uk/ru</span>
+          <span class="link-title">Neka Ljubi Se</span>
+        </span>
+      </a>
+
+      <a class="link-card" href="https://opel.org.uk/solotu" target="_blank" rel="noopener noreferrer">
+        <span class="icon">𖦏</span>
+        <span class="details">
+          <span class="site-name">opel.org.uk/ir</span>
+          <span class="link-title">Solo Tu</span>
+        </span>
+      </a>
+
+      <a class="link-card" href="https://opel.org.uk/весна" target="_blank" rel="noopener noreferrer">
+        <span class="icon">𖦏</span>
+        <span class="details">
+          <span class="site-name">opel.org.uk/ga</span>
+          <span class="link-title">Весна</span>
+        </span>
+      </a>
+
+      <a class="link-card" href="https://opel.org.uk/текст" target="_blank" rel="noopener noreferrer">
+        <span class="icon">𖦏</span>
+        <span class="details">
+          <span class="site-name">opel.org.uk</span>
+          <span class="link-title">Целуй Меня</span>
+        </span>
+      </a>
+
+    </main>
+  </div>
+</body>
+</html>
