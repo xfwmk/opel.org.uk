@@ -856,13 +856,12 @@
 
             <div class="about-item">
               <div class="about-label">زبان‌ها</div>
-              <div class="about-value">🇷🇺 روسی · 🇪🇸 اسپانیایی · 🇮🇷 فارسی</div>
+              <div class="about-value">🇬🇧 انگلیسی · 🇪🇸 اسپانیایی · 🇮🇷 فارسی</div>
             </div>
 
             <div class="about-item">
-              <div class="about-label">آمار کانتر استرایک</div>
-              <div class="about-value">بالاترین ریتینگ: ۲۹٬۶۹۷ پریمیر</div>
-              <div class="about-value">جزو ۶۰۰ نفر برتر جهان</div>
+              <div class="about-label">دارم یاد می‌گیرم.:</div>
+              <div class="about-value">🇦🇱 آلبانیایی · 🇷🇺 روسی</div>
             </div>
 
             <div class="about-item interests">
@@ -890,8 +889,7 @@
 
   <script>
 
-    // Share and cache GitHub repository data so the page does not make
-    // duplicate requests for the same information.
+
     const githubReposPromise = (async () => {
       const cacheKey = "opel-github-repos-v1";
       const cacheTimeKey = "opel-github-repos-time-v1";
@@ -911,7 +909,6 @@
           "https://api.github.com/users/xfwmk/repos?sort=updated&direction=desc&per_page=4"
         );
       } catch (error) {
-        // If GitHub is temporarily unreachable, use an older cached copy if one exists.
         try {
           const stale = sessionStorage.getItem(cacheKey);
           if (stale) return JSON.parse(stale);
