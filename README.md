@@ -8,6 +8,7 @@
   - ga
   - pt
   - fr
+  - links
 #  [matrix](https://opel.org.uk/matrix/)
   - original
   - binary
