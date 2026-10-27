@@ -3,8 +3,9 @@
 A personal portfolio displaying various links to my profiles and information about me.
 
 # [opel.org.uk](https://opel.org.uk/)
-  - languages
   - map
+  - links
+# [languages](https://opel.org.uk/languages/)
   - es
   - ru
   - ir
@@ -12,7 +13,6 @@ A personal portfolio displaying various links to my profiles and information abo
   - ga
   - pt
   - fr
-  - links
 #  [matrix](https://opel.org.uk/matrix/)
   - original
   - binary
@@ -26,7 +26,7 @@ A personal portfolio displaying various links to my profiles and information abo
   - малотебя
   - отпустименя
   - Déjá Vu
-    
+
 # Subdomains:
   - dash.opel.org.uk
   - stocks.opel.org.uk (under construction)
