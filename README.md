@@ -16,6 +16,7 @@ A personal portfolio displaying various links to my profiles and information abo
 #  [matrix](https://opel.org.uk/matrix/)
   - original
   - binary
+  - pipes
 #  [lyrics](https://opel.org.uk/lyrics/)
   - nekaljubise
   - solotu
