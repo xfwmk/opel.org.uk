@@ -22,7 +22,10 @@ A personal portfolio displaying various links to my profiles and information abo
   - весна
   - восемнадцать
   - целуйменя
-
+  - малотебя
+  - отпустименя
+    
 # Subdomains:
   - dash.opel.org.uk
-  - stocks.opel.org.uk
+  - stocks.opel.org.uk (under construction)
+  - mail.opel.org.uk (under construction)
