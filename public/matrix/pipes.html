@@ -1,1 +1,40 @@
-
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#050505">
+<title>𖦏 opel | pipes</title>
+<style>
+:root{color-scheme:dark;--bg:#050505;--panel:#0c0c0c;--line:#292929;--text:#e8e8e8;--muted:#898989}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font:13px/1.5 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}body{display:flex;flex-direction:column;min-height:100dvh}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px 20px;border-bottom:1px solid var(--line)}.brand{font-weight:700;letter-spacing:-.03em}.brand span{color:var(--muted);font-weight:400}.tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap}button,select,input{font:inherit;color:var(--text)}button,select{border:1px solid #333;background:#111;border-radius:6px;padding:7px 10px;cursor:pointer}button:hover,select:hover{border-color:#666}button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid #aaa;outline-offset:2px}.primary{background:#e6e6e6;color:#080808;border-color:#e6e6e6}.primary:hover{background:#fff}.stage{flex:1;position:relative;min-height:360px;overflow:hidden}canvas{display:block;width:100%;height:100%}.hint{position:absolute;left:18px;bottom:16px;pointer-events:none;color:#777;font-size:11px;text-shadow:0 1px 3px #000}.panel{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:12px 20px;border-top:1px solid var(--line);background:#090909}.field{display:flex;align-items:center;gap:9px;color:var(--muted);white-space:nowrap}.field input[type=range]{width:100px;accent-color:#c0c0c0}.field output{min-width:25px;color:#ddd;text-align:right}.status{margin-left:auto;color:#888;font-size:11px}.footer{display:flex;justify-content:space-between;gap:12px;padding:8px 20px;color:#626262;font-size:11px;border-top:1px solid #171717}@media(max-width:700px){.top{padding:12px}.panel{padding:12px;gap:12px}.field input[type=range]{width:72px}.status{width:100%;margin:0}.footer{padding:8px 12px}.hint{font-size:10px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="brand">𖦏 opel <span>| pipes</span></div><div class="tools"><select id="type" aria-label="Pipe style"><option value="0">Heavy</option><option value="1">Rounded</option><option value="2">Light</option><option value="3">Double</option><option value="4">ASCII +</option><option value="5">ASCII slash</option><option value="6">Dots</option><option value="7">Dots / o</option><option value="8">Railway</option><option value="9">Knobby</option><option value="random">Mixed styles</option></select><button id="clear">Clear</button><button id="fullscreen">Fullscreen</button><button class="primary" id="toggle">Pause</button></div></header>
+<main class="stage" id="stage"><canvas id="screen" aria-label="Animated pipes screensaver"></canvas><div class="hint">Space: pause · R: reset · F: fullscreen · ↑/↓: speed · ←/→: turns</div></main>
+<div class="panel"><label class="field">Pipes <input id="pipes" type="range" min="1" max="20" value="1"><output id="pipesValue">1</output></label><label class="field">FPS <input id="fps" type="range" min="20" max="100" value="75"><output id="fpsValue">75</output></label><label class="field">Straight odds <input id="straight" type="range" min="5" max="15" value="13"><output id="straightValue">13</output></label><label class="field"><input id="bold" type="checkbox" checked> Bold</label><label class="field"><input id="color" type="checkbox" checked> Colour</label><label class="field"><input id="keep" type="checkbox"> Keep colour/style</label><label class="field"><input id="randomStart" type="checkbox"> Random start</label><span class="status" id="status">Running</span></div>
+<footer class="footer"><span>Browser implementation of pipes.sh</span><span id="dimensions">—</span></footer>
+<script>
+(()=>{'use strict';
+const sets=["┃┏ ┓┛━┓  ┗┃┛┗ ┏━","│╭ ╮╯─╮  ╰│╯╰ ╭─","│┌ ┐┘─┐  └│┘└ ┌─","║╔ ╗╝═╗  ╚║╝╚ ╔═","|+ ++-+  +|++ +-","|/ \\/-\\  \\|/\\ /-",".. ....  .... ..",".o oo.o  o.oo o.","-\\ /\\|/  /-\\/ \\|","╿┍ ┑┚╼┒  ┕╽┙┖ ┎╾"].map(s=>Array.from(s));
+const $=id=>document.getElementById(id),canvas=$('screen'),ctx=canvas.getContext('2d',{alpha:false}),stage=$('stage');
+const colors=['#e9e9e9','#ff6666','#7ee59a','#e9d477','#759fff','#db8cff','#6ed8df','#b8b8b8'];
+const state={pipes:1,fps:75,straight:13,bold:true,color:true,keep:false,randomStart:false,type:'0',limit:2000};
+let cells=[],cols=80,rows=24,cw=12,ch=20,dpr=1,agents=[],count=0,running=true,last=0,acc=0,raf=0;
+const rand=n=>Math.floor(Math.random()*n);
+function chooseType(){return state.type==='random'?rand(sets.length):Number(state.type)}
+function assign(a){a.type=chooseType();a.color=colors[rand(colors.length)]}
+function spawn(){const a={x:state.randomStart?rand(cols):Math.floor(cols/2),y:state.randomStart?rand(rows):Math.floor(rows/2),dir:state.randomStart?rand(4):0,type:0,color:''};assign(a);return a}
+function initAgents(){agents=Array.from({length:state.pipes},spawn)}
+function fill(){ctx.fillStyle='#050505';ctx.fillRect(0,0,canvas.width/dpr,canvas.height/dpr)}
+function measure(){const w=stage.clientWidth,h=stage.clientHeight;dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.max(1,Math.round(w*dpr));canvas.height=Math.max(1,Math.round(h*dpr));ctx.setTransform(dpr,0,0,dpr,0,0);const font=Math.max(13,Math.min(20,Math.floor(w/65)));ch=Math.round(font*1.35);cw=Math.round(font*.75);cols=Math.max(1,Math.floor(w/cw));rows=Math.max(1,Math.floor(h/ch));ctx.font=`${state.bold?'700':'400'} ${font}px ui-monospace,Consolas,monospace`;ctx.textBaseline='top';$('dimensions').textContent=`${cols} × ${rows}`;fill();initAgents();count=0}
+function step(){for(const a of agents){const old=a.dir;if(old%2)a.x+=2-old;else a.y+=old-1;const wrap=a.x<0||a.x>=cols||a.y<0||a.y>=rows;if(wrap&&!state.keep)assign(a);a.x=(a.x+cols)%cols;a.y=(a.y+rows)%rows;const next=rand(state.straight)===0?(old+(rand(2)?1:3))%4:old;const glyph=sets[a.type][old*4+next]||' ';ctx.fillStyle=state.color?a.color:'#e5e5e5';ctx.fillText(glyph,a.x*cw,a.y*ch);a.dir=next}count+=agents.length;if(state.limit>0&&count>=state.limit){fill();count=0}}
+function tick(now){if(!last)last=now;acc+=Math.min(now-last,250);last=now;if(running){const interval=1000/state.fps;let n=0;while(acc>=interval&&n<8){step();acc-=interval;n++}}else acc=0;raf=requestAnimationFrame(tick)}
+function setRunning(v){running=v;$('toggle').textContent=v?'Pause':'Resume';$('status').textContent=v?'Running':'Paused';last=0;acc=0}
+function reset(){fill();initAgents();count=0}
+for(const key of ['pipes','fps','straight']){$(key).addEventListener('input',e=>{state[key]=Number(e.target.value);$(key+'Value').textContent=e.target.value;if(key==='pipes')initAgents()})}
+for(const key of ['bold','color','keep','randomStart'])$(key).addEventListener('change',e=>{state[key]=e.target.checked;if(key==='bold')measure();if(key==='randomStart')initAgents()});
+$('type').addEventListener('change',e=>{state.type=e.target.value;initAgents()});$('clear').addEventListener('click',reset);$('toggle').addEventListener('click',()=>setRunning(!running));$('fullscreen').addEventListener('click',()=>{if(document.fullscreenElement)document.exitFullscreen();else stage.requestFullscreen?.()});
+window.addEventListener('keydown',e=>{if(['INPUT','SELECT','BUTTON'].includes(document.activeElement?.tagName))return;if(e.code==='Space'){e.preventDefault();setRunning(!running)}else if(e.key.toLowerCase()==='r')reset();else if(e.key.toLowerCase()==='f'){if(document.fullscreenElement)document.exitFullscreen();else stage.requestFullscreen?.()}else if(e.key==='ArrowUp'||e.key==='ArrowDown'){e.preventDefault();state.fps=Math.max(20,Math.min(100,state.fps+(e.key==='ArrowUp'?5:-5)));$('fps').value=state.fps;$('fpsValue').textContent=state.fps}else if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();state.straight=Math.max(5,Math.min(15,state.straight+(e.key==='ArrowRight'?1:-1)));$('straight').value=state.straight;$('straightValue').textContent=state.straight}});
+new ResizeObserver(measure).observe(stage);measure();raf=requestAnimationFrame(tick);
+})();
+</script>
+</body></html>
