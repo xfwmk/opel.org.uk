@@ -1,1 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>𖦏 opel | Neka Ljubi Se</title>
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 
+  <style>
+    a,
+    a:hover,
+    a:focus,
+    a:active,
+    a:visited {
+      text-decoration: none;
+    }
+
+    :root {
+      color-scheme: dark;
+      --text: #ffffff;
+      --muted: #888888;
+      --card: #0b0b0b;
+      --grey: #666666;
+      --grey-hover: #999999;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #000000 url("bg.jpg") 
+        center center / cover fixed no-repeat;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: var(--text);
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 30px 40px 60px;
+    }
+
+    .brand {
+      display: block;
+      width: fit-content;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 25px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+
+    .brand:hover,
+    .brand:focus-visible {
+      opacity: 0.7;
+      text-decoration: none;
+    }
+
+    .lyrics {
+      width: 80%;
+      margin: 0 auto;
+      white-space: pre-wrap;
+      line-height: 1.5;
+      text-align: center;
+      font-size: 24px;
+      color: #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="lyrics">
+[Скит: MOLLY & ЕГОР КРИД]
+— Аллё
+— Алло
+— Да
+— Привет
+— Здарова
+— Слушай, как правильно: Молли или Малли?
+— Молли
+— Молли?
+— Молли
+— Окей
+
+[Интро: MOLLY & ЕГОР КРИД]
+Если ты меня не любишь, то я тоже нет
+Если ты меня забудешь, то и я в ответ (Это Егор Крид)
+
+[Куплет 1: ЕГОР КРИД & Оба]
+С тобой не могу найти контроль
+Теперь, домой я отправлю свою любовь трезветь
+Не стоит
+Это слухи, я — не такой, не верь
+Но порой эти суки ломятся в дверь (О, нет)
+Но как ты могла, но как ты могла
+Раздеть все наши чувства догола?
+Говорить другому всё те же слова: «Бла-бла-бла!» (Ха-ха)
+Но я же знаю, что ты без меня
+Не хочешь, хочешь, хочешь, хочешь
+А с тобою нам быть нельзя
+И будет эта песня для тебя
+You might also like
+Пронзай (Pierce)
+Miyagi & Эндшпиль (Endspiel)
+Круговорот (Gyre)
+Miyagi & Эндшпиль (Endspiel)
+meet the grahams
+Kendrick Lamar
+[Припев: MOLLY & Оба]
+Если ты меня не любишь, то я тоже нет
+Если ты меня забудешь, то и я в ответ
+Если ты меня не любишь, то я тоже нет
+Если ты меня забудешь, то и я в ответ
+
+[Куплет 2: MOLLY & Оба]
+Поцелую долго-долго
+Дальше можно всё забыть
+Колол меня иголкой
+Не оставляя права
+И не теперь, как в небо
+Небо, небо, небо, смотрю в глаза
+Их не я любила ночью
+А кто-то за меня!
+Если я в чужих руках
+Помни, что ты сказал тогда
+Лучше ты не прощай, стучит в висках
+Но я же знаю, что ты без меня
+Не хочешь, хочешь, хочешь, хочешь
+А с тобою нам быть нельзя
+И будет эта песня для тебя
+
+[Припев: ЕГОР КРИД & Оба]
+Если ты меня не любишь, то я тоже нет
+Если ты меня забудешь, то и я в ответ
+Если ты меня не любишь, то я тоже нет
+Если ты меня забудешь, то и я в ответ
+Если ты меня не любишь, то я тоже нет
+Если ты меня забудешь, то и я в ответ
+Если ты меня не любишь, то я тоже нет
+Если ты меня забудешь, то и я в ответ
+[Аутро: MOLLY, ЕГОР КРИД & Оба]
+MOLLY
+Окей
+У-у
+Я, я
+Если ты меня не любишь, то я тоже нет
+Если ты меня забудешь, то и я в ответ
+Если ты меня не любишь, то я тоже нет
+Если ты меня забудешь, то и я в ответ
+  </div>
+<script>
+
+const MUSIC_FILE = "нелюбиш.mp3"; 
+
+const music = new Audio(MUSIC_FILE);
+music.loop = true;
+music.volume = 0.375;
+
+document.addEventListener("keydown", async (event) => {
+  if (event.key.toLowerCase() === "p" && !event.repeat) {
+    if (music.paused) {
+      try {
+        await music.play();
+      } catch (error) {
+        console.error("Could not play music:", error);
+      }
+    } else {
+      music.pause();
+    }
+  }
+});
+</script>
+</body>
+</html>
