@@ -19,6 +19,20 @@
     font-family: Arial, sans-serif;
   }
 
+  #map svg {
+    display: block;
+    cursor: grab;
+    touch-action: none;
+  }
+
+  #map svg:active {
+    cursor: grabbing;
+  }
+
+  .country {
+    vector-effect: non-scaling-stroke;
+  }
+ 
   #map {
     width: 100vw;
     height: 100vh;
@@ -137,52 +151,25 @@
 <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
 
 <script>
+
 (() => {
   "use strict";
 
   const DEFAULT_VISITED = [
-    'England',
-    'France',
-    'Spain',
-    'Greece',
-    'Turkey',
-    'Iran',
-    'Switzerland',
-    'Austria',
-    'Germany',
-    'Italy',
-    'Portugal',
-    'Netherlands',
-    'Poland',
-    'Croatia',
-    'Norway',
-    'Panama'
+    "England", "France", "Spain", "Greece", "Turkey",
+    "Iran", "Switzerland", "Austria", "Germany",
+    "Italy", "Portugal", "Netherlands", "Poland",
+    "Croatia", "Norway", "Panama"
   ];
 
   const DEFAULT_WISHLIST = [
-    "Russia",
-    "Canada",
-    "Albania",
-    "China",
-    "Iceland",
-    "Kazakhstan",
-    "Vietnam",
-    "Nepal",
-    "Colombia",
-    "New Zealand",
-    "Indonesia",
-    "Chile",
-    "Tanzania"
+    "Russia", "Canada", "Albania", "China", "Iceland",
+    "Kazakhstan", "Vietnam", "Nepal", "Colombia",
+    "New Zealand", "Indonesia", "Chile", "Tanzania"
   ];
 
-  const COLORS = {
-    unvisited: "#30343a",
-    visited: "#348cff",
-    wishlist: "#123b7a"
-  };
-
-
   const aliases = {
+    "england": "united kingdom",
     "uk": "united kingdom",
     "great britain": "united kingdom",
     "usa": "united states of america",
@@ -198,144 +185,158 @@
   };
 
   function normalize(name) {
-    const value = String(name || "")
-      .trim()
-      .toLowerCase();
-
-    return aliases[value] || value;
+    const key = String(name || "").trim().toLowerCase();
+    return aliases[key] || key;
   }
 
-  const visited = new Set(
-    DEFAULT_VISITED.map(normalize)
-  );
-
-  const wishlist = new Set(
-    DEFAULT_WISHLIST.map(normalize)
-  );
+  const visited = new Set(DEFAULT_VISITED.map(normalize));
+  const wishlist = new Set(DEFAULT_WISHLIST.map(normalize));
 
   const container = d3.select("#map");
   const tooltip = d3.select("#tooltip");
 
-  const width = window.innerWidth;
-  const height = window.innerHeight;
+  const svg = container.append("svg")
+    .style("display", "block")
+    .style("width", "100%")
+    .style("height", "100%");
 
-  const svg = container
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height)
-    .attr("viewBox", `0 0 ${width} ${height}`)
-    .style("display", "block");
-
-  const layer = svg.append("g");
-
-  const projection = d3.geoNaturalEarth1();
-
+  const viewport = svg.append("g");
+  const projection = d3.geoEquirectangular();
   const path = d3.geoPath(projection);
 
   const geojsonURL =
     "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson";
 
+  let geojson;
+  let worldWidth = 0;
+  let worldHeight = 0;
+  let viewWidth = 0;
+  let viewHeight = 0;
+  let transform = d3.zoomIdentity;
+  let zoom;
+
+  function countryName(feature) {
+    return feature.properties.name ||
+      feature.properties.ADMIN ||
+      "Unknown country";
+  }
+
   function countryStatus(name) {
     const key = normalize(name);
-
-    if (visited.has(key)) {
-      return "visited";
-    }
-
-    if (wishlist.has(key)) {
-      return "wishlist";
-    }
-
+    if (visited.has(key)) return "visited";
+    if (wishlist.has(key)) return "wishlist";
     return "unvisited";
   }
 
-  function countryName(feature) {
-    return (
-      feature.properties.name ||
-      feature.properties.ADMIN ||
-      "Unknown country"
-    );
+  function showTooltip(event, feature) {
+    const name = countryName(feature);
+    const status = countryStatus(name);
+
+    const label = status === "visited"
+      ? "Visited"
+      : status === "wishlist"
+      ? "Wishlist"
+      : "Not visited";
+
+    tooltip
+      .style("display", "block")
+      .style("left", Math.min(event.clientX + 14, innerWidth - 150) + "px")
+      .style("top", Math.min(event.clientY + 14, innerHeight - 60) + "px")
+      .text(`${name} — ${label}`);
   }
 
-  function resizeMap(geojson) {
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-
-    svg
-      .attr("width", w)
-      .attr("height", h)
-      .attr("viewBox", `0 0 ${w} ${h}`);
-
-    projection.fitExtent(
-      [
-        [20, 20],
-        [w - 20, h - 20]
-      ],
-      geojson
-    );
-
-    layer
-      .selectAll("path")
-      .attr("d", path);
+  function hideTooltip() {
+    tooltip.style("display", "none");
   }
 
-  d3.json(geojsonURL)
-    .then(geojson => {
+  function createWorldCopies() {
+    viewport.selectAll("*").remove();
 
-      resizeMap(geojson);
+    const copies = Math.ceil(viewWidth / worldWidth) + 4;
+    const start = -Math.floor(copies / 2);
 
-      layer
-        .selectAll("path")
+    for (let i = 0; i < copies; i++) {
+      const offset = (start + i) * worldWidth;
+
+      const group = viewport.append("g")
+        .attr("transform", `translate(${offset},0)`);
+
+      group.selectAll("path")
         .data(geojson.features)
         .enter()
         .append("path")
-        .attr("class", feature => {
-          return "country " +
-            countryStatus(countryName(feature));
-        })
+        .attr("class", feature =>
+          "country " + countryStatus(countryName(feature))
+        )
         .attr("d", path)
+        .on("mousemove", showTooltip)
+        .on("mouseleave", hideTooltip);
+    }
+  }
 
-        .on("mousemove", function(event, feature) {
-          const name = countryName(feature);
-          const status = countryStatus(name);
+  function applyTransform(t) {
+    const scaledWidth = worldWidth * t.k;
 
-          const label =
-            status === "visited"
-              ? "Visited"
-              : status === "wishlist"
-              ? "Wishlist"
-              : "Not visited";
+    const wrappedX =
+      ((t.x % scaledWidth) + scaledWidth) % scaledWidth;
 
-          tooltip
-            .style("display", "block")
-            .style("left", (event.clientX + 14) + "px")
-            .style("top", (event.clientY + 14) + "px")
-            .html(
-              `<strong>${name}</strong><br>${label}`
-            );
-        })
+    viewport.attr(
+      "transform",
+      `translate(${wrappedX - scaledWidth},${t.y}) scale(${t.k})`
+    );
+  }
 
-        .on("mouseleave", function() {
-          tooltip.style("display", "none");
-        });
+  function resizeMap() {
+    viewWidth = window.innerWidth;
+    viewHeight = window.innerHeight;
 
-      const zoom = d3.zoom()
-        .scaleExtent([1, 8])
+    svg
+      .attr("width", viewWidth)
+      .attr("height", viewHeight)
+      .attr("viewBox", `0 0 ${viewWidth} ${viewHeight}`);
+
+    worldHeight = Math.max(300, viewHeight - 40);
+    worldWidth = worldHeight * 2;
+
+    const scale = worldWidth / (2 * Math.PI);
+
+    projection
+      .scale(scale)
+      .translate([worldWidth / 2, worldHeight / 2]);
+
+    createWorldCopies();
+    applyTransform(transform);
+  }
+
+  d3.json(geojsonURL)
+    .then(data => {
+      geojson = data;
+
+      zoom = d3.zoom()
+        .scaleExtent([0.8, 8])
         .on("zoom", event => {
-          layer.attr("transform", event.transform);
+          transform = event.transform;
+          applyTransform(transform);
+          hideTooltip();
         });
 
       svg.call(zoom);
 
-      window.addEventListener("resize", () => {
-        resizeMap(geojson);
-      });
+      resizeMap();
+
+      transform = d3.zoomIdentity.translate(
+        0,
+        (viewHeight - worldHeight) / 2
+      );
+
+      svg.call(zoom.transform, transform);
+
+      window.addEventListener("resize", resizeMap);
     })
     .catch(error => {
       console.error("Map loading error:", error);
       document.getElementById("error").style.display = "block";
     });
-
 })();
 </script>
 
