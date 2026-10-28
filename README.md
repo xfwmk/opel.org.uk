@@ -27,7 +27,7 @@ Created: 30-09-2026
   - целуйменя
   - малотебя
   - отпустименя
-  - Déjá Vu
+  - dejavu
 
 # Subdomains:
   - dash.opel.org.uk
