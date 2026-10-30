@@ -1,1 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>𖦏 opel | Highlights</title>
 
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    min-height: 100%;
+    background: #080808;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: #f1f1f1;
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+      linear-gradient(
+        rgba(0, 0, 0, 0.72),
+        rgba(0, 0, 0, 0.85)
+      ),
+      url("bg.jpg") center / cover fixed no-repeat;
+  }
+
+  .container {
+    width: min(1100px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 65px 0 90px;
+  }
+
+  h1 {
+    margin: 0 0 35px;
+    font-size: 25px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+  }
+
+  .clip {
+    appearance: none;
+    display: block;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    text-align: left;
+    color: inherit;
+    background: rgba(18, 18, 18, 0.85);
+    border: 1px solid #333;
+    border-radius: 7px;
+    cursor: pointer;
+    transition:
+      border-color 0.2s,
+      background 0.2s,
+      transform 0.2s;
+  }
+
+  .clip:hover {
+    border-color: #888;
+    background: #1b1b1b;
+    transform: translateY(-2px);
+  }
+
+  .thumbnail {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #0a0a0a;
+    overflow: hidden;
+  }
+
+  .thumbnail video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+  }
+
+  .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45px;
+    height: 45px;
+    display: grid;
+    place-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #777;
+    border-radius: 50%;
+    color: white;
+    font-size: 17px;
+    transition: background 0.2s;
+  }
+
+  .clip:hover .play-icon {
+    background: rgba(65, 65, 65, 0.9);
+  }
+
+  .clip-name {
+    padding: 13px 14px;
+    font-size: 13px;
+    color: #ddd;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .empty {
+    color: #aaa;
+    font-size: 14px;
+    padding: 20px 0;
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.94);
+    backdrop-filter: blur(10px);
+  }
+
+  .overlay.open {
+    display: flex;
+  }
+
+  .player-container {
+    width: min(100%, 1050px);
+  }
+
+  .player-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 14px;
+  }
+
+  .player-title {
+    font-size: 14px;
+    color: #ddd;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .close {
+    flex-shrink: 0;
+    padding: 8px 12px;
+    color: #eee;
+    background: #181818;
+    border: 1px solid #444;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  .close:hover {
+    background: #303030;
+  }
+
+  #player {
+    display: block;
+    width: 100%;
+    max-height: 78vh;
+    background: #000;
+    border: 1px solid #333;
+    border-radius: 6px;
+  }
+
+  @media (max-width: 850px) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 520px) {
+    .container {
+      width: calc(100% - 28px);
+      padding-top: 35px;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 25px;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .overlay {
+      padding: 12px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<main class="container">
+  <h1>𖦏 opel | highlights</h1>
+
+  <div class="grid" id="grid"></div>
+</main>
+
+<div class="overlay" id="overlay" role="dialog"
+     aria-modal="true" aria-label="Video player">
+
+  <div class="player-container">
+    <div class="player-top">
+      <span class="player-title" id="playerTitle"></span>
+      <button class="close" id="close" aria-label="Close video">
+        &times;
+      </button>
+    </div>
+
+    <video id="player" controls playsinline></video>
+  </div>
+
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  const CLIPS = [
+    "highlight-1.mp4",
+    "highlight-2.mp4",
+    "highlight-3.mp4"
+  ];
+
+  const grid = document.getElementById("grid");
+  const overlay = document.getElementById("overlay");
+  const player = document.getElementById("player");
+  const playerTitle = document.getElementById("playerTitle");
+  const closeButton = document.getElementById("close");
+
+  let lastFocusedElement = null;
+
+  function getTitle(filename) {
+    return filename
+      .split("/")
+      .pop()
+      .replace(/\.[^.]+$/, "")
+      .replace(/[-_]/g, " ");
+  }
+
+  function getVideoURL(filename) {
+    return "clips/" + filename
+      .split("/")
+      .map(encodeURIComponent)
+      .join("/");
+  }
+
+  function openVideo(filename) {
+    lastFocusedElement = document.activeElement;
+
+    playerTitle.textContent = getTitle(filename);
+    player.src = getVideoURL(filename);
+
+    overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+
+    closeButton.focus();
+
+    player.play().catch(() => {
+    });
+  }
+
+  function closeVideo() {
+    player.pause();
+    player.removeAttribute("src");
+    player.load();
+
+    overlay.classList.remove("open");
+    document.body.style.overflow = "";
+
+    if (lastFocusedElement) {
+      lastFocusedElement.focus();
+    }
+  }
+
+  function createClip(filename) {
+    const button = document.createElement("button");
+    button.className = "clip";
+    button.type = "button";
+    button.setAttribute(
+      "aria-label",
+      "Play " + getTitle(filename)
+    );
+
+    const thumbnail = document.createElement("div");
+    thumbnail.className = "thumbnail";
+
+    const preview = document.createElement("video");
+    preview.src = getVideoURL(filename);
+    preview.preload = "metadata";
+    preview.muted = true;
+    preview.playsInline = true;
+
+    preview.addEventListener("loadedmetadata", () => {
+      if (Number.isFinite(preview.duration)) {
+        preview.currentTime = Math.min(
+          1,
+          preview.duration / 2
+        );
+      }
+    });
+
+    const playIcon = document.createElement("div");
+    playIcon.className = "play-icon";
+    playIcon.textContent = "▶";
+    playIcon.setAttribute("aria-hidden", "true");
+
+    const name = document.createElement("div");
+    name.className = "clip-name";
+    name.textContent = getTitle(filename);
+
+    thumbnail.appendChild(preview);
+    thumbnail.appendChild(playIcon);
+
+    button.appendChild(thumbnail);
+    button.appendChild(name);
+
+    button.addEventListener("click", () => {
+      openVideo(filename);
+    });
+
+    return button;
+  }
+
+  if (CLIPS.length === 0) {
+    const message = document.createElement("p");
+    message.className = "empty";
+    message.textContent = "No highlights yet.";
+    grid.appendChild(message);
+  } else {
+    CLIPS.forEach(filename => {
+      grid.appendChild(createClip(filename));
+    });
+  }
+
+  closeButton.addEventListener("click", closeVideo);
+
+  overlay.addEventListener("click", event => {
+    if (event.target === overlay) {
+      closeVideo();
+    }
+  });
+
+  document.addEventListener("keydown", event => {
+    if (
+      event.key === "Escape" &&
+      overlay.classList.contains("open")
+    ) {
+      closeVideo();
+    }
+
+    if (
+      event.key === "Tab" &&
+      overlay.classList.contains("open")
+    ) {
+      const focusable = [closeButton, player];
+      const current = focusable.indexOf(
+        document.activeElement
+      );
+
+      if (event.shiftKey && current <= 0) {
+        event.preventDefault();
+        player.focus();
+      } else if (!event.shiftKey && current === 1) {
+        event.preventDefault();
+        closeButton.focus();
+      }
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
