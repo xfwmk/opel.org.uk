@@ -1,1 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>𖦏 opel | Déjà Vu</title>
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 
+  <style>
+    a,
+    a:hover,
+    a:focus,
+    a:active,
+    a:visited {
+      text-decoration: none;
+    }
+
+    :root {
+      color-scheme: dark;
+      --text: #ffffff;
+      --muted: #888888;
+      --card: #0b0b0b;
+      --grey: #666666;
+      --grey-hover: #999999;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #000000 url("bg.jpg") 
+        center center / cover fixed no-repeat;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: var(--text);
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 30px 40px 60px;
+    }
+
+    .brand {
+      display: block;
+      width: fit-content;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 25px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+
+    .brand:hover,
+    .brand:focus-visible {
+      opacity: 0.7;
+      text-decoration: none;
+    }
+
+    .lyrics {
+      width: 80%;
+      margin: 0 auto;
+      white-space: pre-wrap;
+      line-height: 1.5;
+      text-align: center;
+      font-size: 24px;
+      color: #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="lyrics">
+[Chorus: INNA]
+No, no, no, no, no, no, no fire, no fire, I
+I wanna feel the music higher and touch the sky
+No love, no love, you drive me crazy, you crazy boy
+I wanna live with you, a déjà vu
+
+[Verse: Bob Taylor]
+I don't wanna lie, I'm feeling so blue
+So take me away, so take me with you
+(Come on)
+Hey mystery girl, I'm falling for you
+I'm living tonight, the last déjà vu
+(Come on)
+
+[Chorus: INNA]
+No, no, no, no, no, no, no fire, no fire, I
+I wanna feel the music higher and touch the sky
+No love, no love, you drive me crazy, you crazy boy
+I wanna live with you, a déjà vu
+
+[Interlude: Bob Taylor]
+La-la-la-la-la-la, la-la-la-la-la-la
+La-la-la-la-la-la, la-la-la-la-la-la
+La-la-la-la-la-la, la-la-la-la-la-la
+La-la-la-la-la-la, la-la-la-la-la-la
+(Come on)
+
+[Verse: Bob Taylor]
+I don't wanna lie, I'm feeling so blue
+So take me away, so take me with you
+Hey mystery girl, I'm falling for you
+I'm living tonight, the last déjà vu
+
+[Chorus: INNA]
+No, no, no, no, no, no, no fire, no fire, I
+I wanna feel the music higher and touch the sky
+No love, no love, you drive me crazy, you crazy boy
+I wanna live with you, a déjà vu
+
+[Interlude: Bob Taylor]
+La-la-la-la-la-la, la-la-la-la-la-la
+La-la-la-la-la-la, la-la-la-la-la-la
+La-la-la-la-la-la, la-la-la-la-la-la
+La-la-la-la-la-la, la-la-la-la-la-la
+(Come on)
+
+[Chorus: INNA]
+No, no, no, no, no, no, no fire, no fire, I
+I wanna feel the music higher and touch the sky
+No love, no love, you drive me crazy, you crazy boy
+I wanna live with you, a déjà vu
+No, no, no, no, no, no, no fire, no fire, I
+I wanna feel the music higher and touch the sky
+No love, no love, you drive me crazy, you crazy boy
+I wanna live with you, a déjà vu
+[Outro: Bob Taylor]
+La-la-la-la-la-la, la-la-la-la-la-la
+La-la-la-la-la-la, la-la-la-la-la-la
+La-la-la-la-la-la, la-la-la-la-la-la
+La-la-la-la-la-la, la-la-la-la-la-la
+  </div>
+<script>
+
+const MUSIC_FILE = "dejavu.mp3"; 
+
+const music = new Audio(MUSIC_FILE);
+music.loop = true;
+music.volume = 0.375;
+
+document.addEventListener("keydown", async (event) => {
+  if (event.key.toLowerCase() === "p" && !event.repeat) {
+    if (music.paused) {
+      try {
+        await music.play();
+      } catch (error) {
+        console.error("Could not play music:", error);
+      }
+    } else {
+      music.pause();
+    }
+  }
+});
+</script>
+</body>
+</html>
