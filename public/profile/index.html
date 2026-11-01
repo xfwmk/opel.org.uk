@@ -453,7 +453,7 @@
       if (profile.gameextrainfo) {
         box.dataset.state = "in-game";
         stateEl.textContent =
-          "Playing " + profile.gameextrainfo;
+          "" + profile.gameextrainfo;
 
       } else if (Number(profile.personastate) > 0) {
         box.dataset.state = "online";
