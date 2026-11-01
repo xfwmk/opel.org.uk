@@ -18,6 +18,127 @@
     background: #080808;
   }
 
+.steam-status {
+  position: fixed;
+  top: 22px;
+  right: 22px;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  width: 245px;
+  padding: 11px 13px;
+
+  background: rgba(10, 10, 10, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 10px;
+
+  color: #ffffff;
+  text-decoration: none;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.steam-status:hover {
+  background: rgba(25, 25, 25, 0.9);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.steam-avatar {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  object-fit: cover;
+
+  background: #202020;
+  border: 1px solid #555;
+  border-radius: 7px;
+}
+
+.steam-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.steam-name {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.steam-state {
+  color: #999999;
+  font-size: 12px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.steam-indicator {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+
+  background: #666666;
+  border-radius: 50%;
+}
+
+.steam-status[data-state="online"] .steam-indicator {
+  background: #eeeeee;
+  box-shadow: 0 0 7px rgba(255, 255, 255, 0.4);
+}
+
+.steam-status[data-state="in-game"] .steam-indicator {
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+.steam-status[data-state="offline"] .steam-indicator {
+  background: #555555;
+}
+
+
+@media (max-width: 600px) {
+  .steam-status {
+    top: 15px;
+    right: 15px;
+    width: 205px;
+    padding: 9px 11px;
+    gap: 9px;
+  }
+
+  .steam-avatar {
+    width: 38px;
+    height: 38px;
+  }
+
+  .steam-name {
+    font-size: 12px;
+  }
+
+  .steam-state {
+    font-size: 11px;
+  }
+}
+
   body {
     color: #ffffff;
     font-family: Arial, Helvetica, sans-serif;
@@ -112,6 +233,33 @@
 </head>
 
 <body>
+
+<a
+  class="steam-status"
+  id="steam-status"
+  data-state="offline"
+  href="https://steamcommunity.com/id/opelascona"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <img
+    class="steam-avatar"
+    id="steam-avatar"
+    alt=""
+  >
+
+  <div class="steam-info">
+    <span class="steam-name" id="steam-name">
+      Loading...
+    </span>
+
+    <span class="steam-state" id="steam-state">
+      Checking status...
+    </span>
+  </div>
+
+  <span class="steam-indicator"></span>
+</a>
 
 <canvas id="particles"></canvas>
 
@@ -265,6 +413,68 @@
 
   resize();
   start();
+})();
+</script>
+
+<script>
+(() => {
+  "use strict";
+
+  const WORKER_URL =
+    "https://steam-status.k11987rn.workers.dev";
+
+  const box = document.getElementById("steam-status");
+  const avatar = document.getElementById("steam-avatar");
+  const nameEl = document.getElementById("steam-name");
+  const stateEl = document.getElementById("steam-state");
+
+  async function updateSteam() {
+    try {
+      const response = await fetch(
+        WORKER_URL + "?t=" + Date.now()
+      );
+
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+
+      const profile = await response.json();
+
+      if (profile.error || !profile.personaname) {
+        throw new Error("Profile unavailable");
+      }
+
+      nameEl.textContent = profile.personaname;
+
+      if (profile.avatarfull) {
+        avatar.src = profile.avatarfull;
+      }
+
+      if (profile.gameextrainfo) {
+        box.dataset.state = "in-game";
+        stateEl.textContent =
+          "Playing " + profile.gameextrainfo;
+
+      } else if (Number(profile.personastate) > 0) {
+        box.dataset.state = "online";
+        stateEl.textContent = "Online";
+
+      } else {
+        box.dataset.state = "offline";
+        stateEl.textContent = "Offline";
+      }
+
+    } catch (error) {
+      box.dataset.state = "offline";
+      nameEl.textContent = "opelascona";
+      stateEl.textContent = "Status unavailable";
+      console.error("Steam status error:", error);
+    }
+  }
+
+  updateSteam();
+
+  setInterval(updateSteam, 60000);
 })();
 </script>
 
