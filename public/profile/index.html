@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>𖦏 opel | Profile</title>
+<title>𖦏 opel | profile</title>
 
 <style>
   * {
@@ -14,15 +14,29 @@
     margin: 0;
     width: 100%;
     height: 100%;
+    overflow: hidden;
+    background: #080808;
   }
 
   body {
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
     background:
       url("banner.jpg") center center / cover no-repeat;
-    background-color: #080808;
-    color: #000000;
-    font-family: Arial, Helvetica, sans-serif;
   }
+
+  /* Floating particles */
+
+  #particles {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Centred profile */
 
   .profile {
     position: absolute;
@@ -33,6 +47,7 @@
     flex-direction: column;
     align-items: center;
     gap: 24px;
+    z-index: 2;
   }
 
   .profile-picture {
@@ -41,6 +56,30 @@
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #ffffff;
+
+    /* Soft animated glow */
+    box-shadow:
+      0 0 18px rgba(255, 255, 255, 0.25),
+      0 0 45px rgba(255, 255, 255, 0.12),
+      0 0 80px rgba(255, 255, 255, 0.06);
+
+    animation: glow 4s ease-in-out infinite;
+  }
+
+  @keyframes glow {
+    0%, 100% {
+      box-shadow:
+        0 0 18px rgba(255, 255, 255, 0.25),
+        0 0 45px rgba(255, 255, 255, 0.12),
+        0 0 80px rgba(255, 255, 255, 0.06);
+    }
+
+    50% {
+      box-shadow:
+        0 0 25px rgba(255, 255, 255, 0.4),
+        0 0 60px rgba(255, 255, 255, 0.2),
+        0 0 100px rgba(255, 255, 255, 0.1);
+    }
   }
 
   .username {
@@ -61,20 +100,169 @@
       font-size: 26px;
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .profile-picture {
+      animation: none;
+    }
+  }
 </style>
 </head>
 
 <body>
 
-  <main class="profile">
-    <img
-      src="profile.jpg"
-      alt="Profile picture"
-      class="profile-picture"
-    >
+<canvas id="particles"></canvas>
 
-    <h1 class="username">rega</h1>
-  </main>
+<main class="profile">
+  <img
+    src="profile.jpg"
+    alt="Profile picture"
+    class="profile-picture"
+  >
+
+  <h1 class="username">rega</h1>
+</main>
+
+<script>
+(() => {
+  "use strict";
+
+  const canvas = document.getElementById("particles");
+  const ctx = canvas.getContext("2d");
+
+  const PARTICLE_COUNT = 65;
+  const particles = [];
+
+  let width = 0;
+  let height = 0;
+  let animationId = null;
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+  function random(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  function createParticle() {
+    return {
+      x: random(0, width),
+      y: random(0, height),
+      radius: random(0.5, 1.8),
+      speedX: random(-0.12, 0.12),
+      speedY: random(-0.35, -0.08),
+      opacity: random(0.15, 0.55),
+      phase: random(0, Math.PI * 2)
+    };
+  }
+
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    const dpr = Math.min(
+      window.devicePixelRatio || 1,
+      2
+    );
+
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    particles.length = 0;
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push(createParticle());
+    }
+
+    if (reducedMotion.matches) {
+      draw(0, false);
+    }
+  }
+
+  function draw(time, move = true) {
+    ctx.clearRect(0, 0, width, height);
+
+    for (const particle of particles) {
+      if (move) {
+        particle.x += particle.speedX;
+        particle.y += particle.speedY;
+
+        if (particle.y < -5) {
+          particle.y = height + 5;
+          particle.x = random(0, width);
+        }
+
+        if (particle.x < -5) {
+          particle.x = width + 5;
+        }
+
+        if (particle.x > width + 5) {
+          particle.x = -5;
+        }
+      }
+
+      const shimmer = move
+        ? 0.75 + Math.sin(
+            time * 0.001 + particle.phase
+          ) * 0.25
+        : 1;
+
+      ctx.beginPath();
+      ctx.arc(
+        particle.x,
+        particle.y,
+        particle.radius,
+        0,
+        Math.PI * 2
+      );
+
+      ctx.fillStyle =
+        `rgba(255,255,255,${particle.opacity * shimmer})`;
+
+      ctx.fill();
+    }
+  }
+
+  function animate(time) {
+    draw(time);
+    animationId = requestAnimationFrame(animate);
+  }
+
+  function start() {
+    if (animationId !== null) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+
+    if (reducedMotion.matches) {
+      draw(0, false);
+    } else {
+      animationId = requestAnimationFrame(animate);
+    }
+  }
+
+  window.addEventListener("resize", resize);
+
+  reducedMotion.addEventListener("change", start);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      if (animationId !== null) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
+    } else {
+      start();
+    }
+  });
+
+  resize();
+  start();
+})();
+</script>
 
 </body>
 </html>
