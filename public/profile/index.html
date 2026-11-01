@@ -1,1 +1,81 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>𖦏 opel | profile</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    background:
+      url("banner.jpg") center center / cover no-repeat;
+    background-color: #080808;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .profile {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ffffff;
+  }
+
+  .username {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    .profile-picture {
+      width: 120px;
+      height: 120px;
+    }
+
+    .username {
+      font-size: 26px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+  <main class="profile">
+    <img
+      src="profile.jpg"
+      alt="Profile picture"
+      class="profile-picture"
+    >
+
+    <h1 class="username">rega</h1>
+  </main>
+
+</body>
+</html>
