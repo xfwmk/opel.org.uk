@@ -25,8 +25,6 @@
       url("banner.jpg") center center / cover no-repeat;
   }
 
-  /* Floating particles */
-
   #particles {
     position: fixed;
     inset: 0;
@@ -35,8 +33,6 @@
     pointer-events: none;
     z-index: 1;
   }
-
-  /* Centred profile */
 
   .profile {
     position: absolute;
@@ -57,7 +53,6 @@
     object-fit: cover;
     border: 3px solid #ffffff;
 
-    /* Soft animated glow */
     box-shadow:
       0 0 18px rgba(255, 255, 255, 0.25),
       0 0 45px rgba(255, 255, 255, 0.12),
@@ -130,7 +125,7 @@
   const canvas = document.getElementById("particles");
   const ctx = canvas.getContext("2d");
 
-  const PARTICLE_COUNT = 65;
+  const PARTICLE_COUNT = 90;
   const particles = [];
 
   let width = 0;
