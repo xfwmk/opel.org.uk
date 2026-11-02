@@ -1,1 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>𖦏 opel | Startpage</title>
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      font-family: Arial, sans-serif;
+      background: #000 url("wall.jpg") center / cover fixed no-repeat;
+    }
+
+    .search {
+      transform: translateY(-132px);
+      display: flex;
+      align-items: center;
+      width: min(100%, 560px);
+      height: 54px;
+      padding: 0 18px;
+      background: rgba(15, 15, 15, 0.85);
+      border: 1px solid #333;
+      border-radius: 12px;
+      backdrop-filter: blur(16px);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .search:focus-within {
+      border-color: #777;
+      background: rgba(20, 20, 20, 0.95);
+    }
+
+    .search input {
+      flex: 1;
+      min-width: 0;
+      height: 100%;
+      padding: 0;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #fff;
+      font: 15px Arial, sans-serif;
+    }
+
+    .search input::placeholder {
+      color: #777;
+    }
+
+    .search button {
+      display: grid;
+      place-items: center;
+      padding: 8px;
+      margin-right: -8px;
+      border: none;
+      background: transparent;
+      color: #888;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .search button:hover {
+      color: #fff;
+    }
+
+    .search svg {
+      width: 19px;
+      height: 19px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  </style>
+</head>
+
+<body>
+  <form class="search" action="https://duckduckgo.com/" method="GET" role="search">
+    <input
+      type="search"
+      name="q"
+      placeholder="Search the web..."
+      aria-label="Search DuckDuckGo"
+      autocomplete="off"
+      autofocus
+      required
+    >
+
+    <button type="submit" aria-label="Search">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="m20 20-4-4"></path>
+      </svg>
+    </button>
+  </form>
+</body>
+</html>
