@@ -4,6 +4,8 @@ A personal portfolio displaying various links to my profiles and information abo
 
 Created: 30-09-2026
 
+(The home page has been changed and now the old one goes by the path opel.org.uk/info)
+
 # [opel.org.uk](https://opel.org.uk/)
   - map
   - links
