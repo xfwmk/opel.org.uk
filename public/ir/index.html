@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="es" class="font-stk-bureau-sans">
+<html lang="fa" class="font-stk-bureau-sans">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#000000">
-  <title>𖦏 opel</title>
+  <title>𖦏 اوپل</title>
   <link rel="stylesheet" href="assets/_separator.BAUrGshG.css">
   <link rel="stylesheet" href="assets/index.Cm-titPL.css">
   <link rel="stylesheet" href="assets/index.CN3UJUeJ.css">
@@ -122,35 +122,35 @@
   <canvas id="floating-dots" aria-hidden="true"></canvas>
   <header class="opel-header">
     <div class="opel-bar">
-      <a class="opel-brand" href="./" aria-label="opel home">𖦏 opel</a>
+      <a class="opel-brand" href="./" aria-label="opel home">𖦏 اوپل</a>
       <nav class="opel-nav" aria-label="Main navigation">
         <details name="opel-navigation">
-          <summary>Enlaces</summary>
+          <summary>پیوندها</summary>
           <div class="opel-dropdown">
-            <a href="/links">Enlaces</a>
-            <a href="/languages">Idiomas</a>
-            <a href="https://dash.opel.org.uk">Panel de control</a>
-            <a href="/lyrics">Letras</a>
-            <a href="https://lab.opel.org.uk">Laboratorio</a>
-            <a href="/map">Mapa</a>
+            <a href="/links">پیوندها</a>
+            <a href="/languages">زبان‌ها</a>
+            <a href="https://dash.opel.org.uk">پیشخوان</a>
+            <a href="/lyrics">متن ترانه‌ها</a>
+            <a href="https://lab.opel.org.uk">آزمایشگاه</a>
+            <a href="/map">نقشه</a>
           </div>
         </details>
         <details name="opel-navigation">
-          <summary>Información</summary>
-          <div class="opel-dropdown"><a href="/info">Información</a></div>
+          <summary>اطلاعات</summary>
+          <div class="opel-dropdown"><a href="/info">اطلاعات</a></div>
         </details>
         <details name="opel-navigation">
-          <summary>Redes sociales</summary>
+          <summary>شبکه‌های اجتماعی</summary>
           <div class="opel-dropdown">
-            <a href="https://steamcommunity.com/id/opelascona">Steam</a>
-            <a href="https://github.com/xfwmk">GitHub</a>
-            <a href="https://faceit.com/en/players/opeI">FACEIT</a>
-            <a href="https://tiktok.com/@kianrega1">TikTok</a>
-            <a href="https://tiktok.com/@opel6666">TikTok #2</a>
+            <a href="https://steamcommunity.com/id/opelascona">استیم</a>
+            <a href="https://github.com/xfwmk">گیت‌هاب</a>
+            <a href="https://faceit.com/en/players/opeI">فیسیت</a>
+            <a href="https://tiktok.com/@kianrega1">تیک‌تاک</a>
+            <a href="https://tiktok.com/@opel6666">تیک‌تاک شمارهٔ ۲</a>
           </div>
         </details>
       </nav>
-      <a class="opel-dashboard" href="https://dash.opel.org.uk">Panel de control</a>
+      <a class="opel-dashboard" href="https://dash.opel.org.uk">پیشخوان</a>
     </div>
   </header>
   <main id="main-content" tabindex="-1">
@@ -158,18 +158,18 @@
       <div class="opel-hero-content">
         <h1 id="hero-title">opel.org.uk</h1>
         <p>
-          Una plataforma para mi información y mis proyectos.<br>
-          Mantenida únicamente por Kian Rega en Cloudflare.
+          یک پلتفرم برای اطلاعات و پروژه‌های من.<br>
+          نگهداری این سایت در کلادفلر فقط بر عهدهٔ کیان رگا است.
         </p>
-        <a class="opel-cta" href="https://opel.org.uk/info">Empieza a explorar el sitio</a>
+        <a class="opel-cta" href="https://opel.org.uk/info">کاوش در سایت را آغاز کنید</a>
       </div>
     </section>
     <section id="recent-projects" data-github-user="xfwmk" aria-labelledby="projects-title">
       <header class="projects-heading">
-        <div><span class="projects-label">GitHub</span><h2 id="projects-title">Proyectos recientes</h2></div>
-        <a class="projects-profile" hidden>Todos los repositorios ↗</a>
+        <div><span class="projects-label">گیت‌هاب</span><h2 id="projects-title">پروژه‌های اخیر</h2></div>
+        <a class="projects-profile" hidden>همهٔ مخزن‌ها ↗</a>
       </header>
-      <p class="projects-status" role="status">Cargando proyectos…</p>
+      <p class="projects-status" role="status">در حال بارگذاری پروژه‌ها…</p>
       <div class="projects-grid"></div>
     </section>
   </main>
@@ -317,7 +317,7 @@
   const profile = section.querySelector(".projects-profile");
   const grid = section.querySelector(".projects-grid");
   if (!user || user === "YOUR_GITHUB_USERNAME") {
-    status.textContent = "añade un nombre de usuario";
+    status.textContent = "نام کاربری را اضافه کنید";
     return;
   }
   const handle = encodeURIComponent(user);
@@ -330,10 +330,10 @@
     if (!response.ok) throw new Error(`GitHub returned ${response.status}`);
     const repos = await response.json();
     if (!repos.length) {
-      status.textContent = "Todavía no hay proyectos públicos.";
+      status.textContent = "هنوز پروژهٔ عمومی‌ای وجود ندارد.";
       return;
     }
-    const dateFormat = new Intl.DateTimeFormat("es", {
+    const dateFormat = new Intl.DateTimeFormat("fa", {
       day: "numeric", month: "short", year: "numeric"
     });
     for (const repo of repos) {
@@ -352,7 +352,7 @@
       const details = [];
       if (repo.language) details.push(repo.language);
       if (repo.pushed_at) {
-        details.push(`Último envío: ${dateFormat.format(new Date(repo.pushed_at))}`);
+        details.push(`آخرین ارسال: ${dateFormat.format(new Date(repo.pushed_at))}`);
       }
       meta.textContent = details.join(" · ");
       card.append(meta);
@@ -372,9 +372,10 @@
     window.addEventListener("resize", updateProjectVisibility);
     updateProjectVisibility();
   } catch {
-    status.textContent = "No se pudieron cargar los proyectos. Usa «Todos los repositorios» para verlos en GitHub.";
+    status.textContent = "پروژه‌ها بارگذاری نشدند. برای مشاهدهٔ آن‌ها در گیت‌هاب، از «همهٔ مخزن‌ها» استفاده کنید.";
   }
 })();
 </script>
 </body>
 </html>
+
