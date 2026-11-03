@@ -4,475 +4,377 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#000000">
-  
-  <title>𖦏 opel | Español</title>
+  <title>𖦏 opel</title>
   <link rel="stylesheet" href="assets/_separator.BAUrGshG.css">
   <link rel="stylesheet" href="assets/index.Cm-titPL.css">
   <link rel="stylesheet" href="assets/index.CN3UJUeJ.css">
-
   <style>
-    :root {
-      color-scheme: dark;
-      background: #0a0a0a;
-      color: #fff;
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100svh;
-      background: #0a0a0a;
-      color: #fff;
-    }
-
-    .opel-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: #0a0a0a;
-      color: #fff;
-    }
-
-    .opel-bar {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      max-width: 1480px;
-      height: 72px;
-      margin-inline: auto;
-      padding-inline: clamp(12px, 2vw, 28px);
-    }
-
-    .opel-brand,
-    .opel-dropdown a,
-    .opel-dashboard,
-    .opel-cta {
-      color: #fff;
-      text-decoration: none;
-    }
-
-    .opel-brand {
-      justify-self: start;
-      font-size: clamp(20px, 3vw, 28px);
-      font-weight: 650;
-      white-space: nowrap;
-    }
-
-    .opel-nav {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .opel-nav details {
-      position: relative;
-    }
-
-    .opel-nav summary {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px;
-      border-radius: 8px;
-      color: #fff;
-      cursor: pointer;
-      font-weight: 500;
-      list-style: none;
-    }
-
-    .opel-nav summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .opel-nav summary::after {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-right: 1.5px solid;
-      border-bottom: 1.5px solid;
-      transform: translateY(-2px) rotate(45deg);
-    }
-
-    .opel-nav details[open] summary::after {
-      transform: translateY(2px) rotate(225deg);
-    }
-
-    .opel-nav summary:hover,
-    .opel-nav details[open] summary,
-    .opel-dropdown a:hover,
-    .opel-dropdown a:focus-visible {
-      background: #222;
-    }
-
-    .opel-dropdown {
-      position: absolute;
-      top: calc(100% + 5px);
-      left: 0;
-      width: 180px;
-      padding: 5px;
-      border: 1px solid #383838;
-      border-radius: 12px;
-      background: #0b0b0b;
-      box-shadow: 0 12px 32px rgb(0 0 0 / 40%);
-    }
-
-    .opel-dropdown a {
-      display: block;
-      padding: 10px 12px;
-      border-radius: 7px;
-    }
-
-    .opel-dashboard,
-    .opel-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid #555;
-      border-radius: 999px;
-      background: #0a0a0a;
-      font-weight: 550;
-    }
-
-    .opel-dashboard {
-      justify-self: end;
-      padding: 8px 14px;
-    }
-
-    .opel-dashboard:hover,
-    .opel-cta:hover {
-      border-color: #fff;
-      background: #0a0a0a;
-    }
-
-    :is(a, summary):focus-visible {
-      outline: 2px solid #fff;
-      outline-offset: 3px;
-    }
-
-    #main-content {
-      padding: 8px 8px 12px;
-      background: #0a0a0a;
-    }
-
-    .opel-hero {
-      position: relative;
-      isolation: isolate;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      max-width: 1480px;
-      min-height: 720px;
-      margin-inline: auto;
-      padding: 64px 24px;
-      border-radius: 16px;
-      color: #fff;
-      background-color: #08152e;
-      background-image:
-        radial-gradient(ellipse 25% 15% at 50% 103%,
-          #ecf8ff 0%, #a8d9ff 30%, rgb(87 166 255 / 72%) 54%,
-          transparent 100%),
-        radial-gradient(ellipse 54% 65% at 50% 112%,
-          #367aca 0%, #204c88 35%, rgb(25 58 105 / 55%) 64%,
-          transparent 100%);
-      box-shadow: inset 0 2px 8px rgb(158 202 255 / 16%);
-    }
-
-    .opel-hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background-image: radial-gradient(
-        ellipse 1px 1.6px at center,
-        rgb(255 244 191 / 50%) 30%,
-        transparent 100%
-      );
-      background-size: 6px 8px;
-      mask-image: radial-gradient(
-        ellipse 63% 94% at 50% 100%,
-        #000 0%, rgb(0 0 0 / 55%) 49%, transparent 100%
-      );
-    }
-
-    .opel-hero-content {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      justify-items: center;
-      gap: clamp(24px, 3vw, 40px);
-      width: 100%;
-      text-align: center;
-    }
-
-    .opel-hero h1 {
-      max-width: 1080px;
-      margin: 0;
-      color: #fff;
-      font-size: clamp(40px, 4.3vw, 64px);
-      font-weight: 600;
-      letter-spacing: -0.045em;
-      line-height: 1.04;
-      text-wrap: balance;
-    }
-
-    .opel-hero p {
-      max-width: 700px;
-      margin: 0;
-      color: #fff;
-      font-size: clamp(17px, 1.4vw, 21px);
-      line-height: 1.3;
-      text-wrap: balance;
-    }
-
-    .opel-cta {
-      margin-top: 8px;
-      padding: 14px 24px;
-      border-color: transparent;
-    }
-
+    :root { color-scheme: dark; background: #0a0a0a; color: #fff; }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; min-height: 100svh; background: #0a0a0a; color: #fff; }
+    .opel-header { position: sticky; top: 0; z-index: 50; background: #0a0a0a; color: #fff; }
+    .opel-bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; max-width: 1480px; height: 72px; margin-inline: auto; padding-inline: clamp(12px, 2vw, 28px); }
+    .opel-brand, .opel-dropdown a, .opel-dashboard, .opel-cta { color: #fff; text-decoration: none; }
+    .opel-brand { justify-self: start; font-size: clamp(20px, 3vw, 28px); font-weight: 650; white-space: nowrap; }
+    .opel-nav { display: flex; align-items: center; gap: 4px; }
+    .opel-nav details { position: relative; }
+    .opel-nav summary { display: flex; align-items: center; gap: 8px; padding: 10px; border-radius: 8px; color: #fff; cursor: pointer; font-weight: 500; list-style: none; }
+    .opel-nav summary::-webkit-details-marker { display: none; }
+    .opel-nav summary::after { content: ""; width: 6px; height: 6px; border-right: 1.5px solid; border-bottom: 1.5px solid; transform: translateY(-2px) rotate(45deg); }
+    .opel-nav details[open] summary::after { transform: translateY(2px) rotate(225deg); }
+    .opel-nav summary:hover, .opel-nav details[open] summary, .opel-dropdown a:hover, .opel-dropdown a:focus-visible { background: #222; }
+    .opel-dropdown { position: absolute; top: calc(100% + 5px); left: 0; width: 180px; padding: 5px; border: 1px solid #383838; border-radius: 12px; background: #0b0b0b; box-shadow: 0 12px 32px rgb(0 0 0 / 40%); }
+    .opel-dropdown a { display: block; padding: 10px 12px; border-radius: 7px; }
+    .opel-dashboard, .opel-cta { display: inline-flex; align-items: center; justify-content: center; border: 1px solid #555; border-radius: 999px; background: #0a0a0a; font-weight: 550; }
+    .opel-dashboard { justify-self: end; padding: 8px 14px; }
+    .opel-dashboard:hover, .opel-cta:hover { border-color: #fff; background: #0a0a0a; }
+    :is(a, summary):focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+    #main-content { padding: 8px 8px 12px; background: #0a0a0a; }
+    .opel-hero { position: relative; isolation: isolate; display: grid; place-items: center; overflow: hidden; max-width: 1480px; min-height: 720px; margin-inline: auto; padding: 64px 24px; border-radius: 16px; color: #fff; background-color: #050e1e; background-image: radial-gradient(ellipse 22% 13% at 50% 103%, #a7c8e8 0%, #648db8 30%, rgb(55 102 156 / 55%) 56%, transparent 100%), radial-gradient(ellipse 50% 58% at 50% 110%, #24558e 0%, #15345e 35%, rgb(15 36 67 / 50%) 65%, transparent 100%); box-shadow: inset 0 2px 8px rgb(125 170 215 / 9%); }
+    .opel-hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(ellipse 1px 1.6px at center, rgb(255 244 191 / 50%) 30%, transparent 100%); background-size: 6px 8px; mask-image: radial-gradient(ellipse 63% 94% at 50% 100%, #000 0%, rgb(0 0 0 / 55%) 49%, transparent 100%); }
+    .opel-hero-content { position: relative; z-index: 1; display: grid; justify-items: center; gap: clamp(24px, 3vw, 40px); width: 100%; text-align: center; }
+    .opel-hero h1 { max-width: 1080px; margin: 0; color: #fff; font-size: clamp(40px, 4.3vw, 64px); font-weight: 600; letter-spacing: -0.045em; line-height: 1.04; text-wrap: balance; }
+    .opel-hero p { max-width: 700px; margin: 0; color: #fff; font-size: clamp(17px, 1.4vw, 21px); line-height: 1.3; text-wrap: balance; }
+    .opel-cta { margin-top: 8px; padding: 14px 24px; border-color: transparent; }
     @media (max-width: 47.999rem) {
-      .opel-bar {
-        display: flex;
-        justify-content: space-between;
-        height: 54px;
-        padding-inline: 10px;
-      }
-
+      .opel-bar { display: flex; justify-content: space-between; height: 54px; padding-inline: 10px; }
       .opel-nav { gap: 0; }
       .opel-nav summary { padding-inline: 7px; }
       .opel-dashboard { padding: 6px 10px; }
-
-      .opel-dropdown {
-        left: 50%;
-        transform: translateX(-50%);
-      }
-
+      .opel-dropdown { left: 50%; transform: translateX(-50%); }
       #main-content { padding: 4px; }
-
-      .opel-hero {
-        min-height: 600px;
-        padding-inline: 20px;
-        border-radius: 12px;
-      }
+      .opel-hero { min-height: 600px; padding-inline: 20px; border-radius: 12px; }
     }
-      @media (prefers-reduced-motion: no-preference) {
-      .opel-dashboard,
-      .opel-cta {
-        transition: transform 180ms ease, box-shadow 180ms ease,
-                    background-color 180ms ease, border-color 180ms ease;
-      }
-
-      .opel-nav summary {
-        position: relative;
-      }
-
-      .opel-nav summary::before {
-        content: "";
-        position: absolute;
-        left: 8px;
-        right: 8px;
-        bottom: 3px;
-        height: 2px;
-        border-radius: 2px;
-        background: #9ecfff;
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 180ms ease;
-      }
-
-      .opel-nav summary::after {
-        transition: transform 180ms ease;
-      }
-
-      .opel-nav details[open] summary::before,
-      .opel-nav summary:focus-visible::before {
-        transform: scaleX(1);
-      }
-
-      .opel-dropdown a {
-        transition: padding-left 160ms ease, background-color 160ms ease;
-      }
-
-      @media (hover: hover) {
-        .opel-dashboard:hover,
-        .opel-cta:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 4px 16px rgb(90 165 255 / 24%);
-        }
-
-        .opel-nav summary:hover::before {
-          transform: scaleX(1);
-        }
-
-        .opel-dropdown a:hover {
-          padding-left: 16px;
-        }
-      }
-
-      .opel-dashboard:active,
-      .opel-cta:active {
-        transform: translateY(1px) scale(0.98);
-        box-shadow: none;
-      }
-    }
-
     @media (prefers-reduced-motion: no-preference) {
-      .opel-nav details[open] > .opel-dropdown {
-        transform-origin: top center;
-        animation: opel-menu-open 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      .opel-dashboard, .opel-cta { transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease; }
+      .opel-nav summary { position: relative; }
+      .opel-nav summary::before { content: ""; position: absolute; left: 8px; right: 8px; bottom: 3px; height: 2px; border-radius: 2px; background: #9ecfff; transform: scaleX(0); transform-origin: left; transition: transform 180ms ease; }
+      .opel-nav summary::after { transition: transform 180ms ease; }
+      .opel-nav details[open] summary::before, .opel-nav summary:focus-visible::before { transform: scaleX(1); }
+      .opel-dropdown a { transition: padding-left 160ms ease, background-color 160ms ease; }
+      @media (hover: hover) {
+        .opel-dashboard:hover, .opel-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgb(90 165 255 / 24%); }
+        .opel-nav summary:hover::before { transform: scaleX(1); }
+        .opel-dropdown a:hover { padding-left: 16px; }
       }
-
-      .opel-nav details[open] > .opel-dropdown > a {
-        animation: opel-link-in 180ms ease-out 45ms backwards;
-      }
-
-      .opel-nav details[open] > .opel-dropdown > a:nth-child(2) {
-        animation-delay: 80ms;
-      }
-
-      @keyframes opel-menu-open {
-        from {
-          opacity: 0;
-          translate: 0 -7px;
-          scale: 0.98 0.9;
-        }
-        to {
-          opacity: 1;
-          translate: 0 0;
-          scale: 1;
-        }
-      }
-
-      @keyframes opel-link-in {
-        from {
-          opacity: 0;
-          translate: 0 -4px;
-        }
-        to {
-          opacity: 1;
-          translate: 0 0;
-        }
-      }
+      .opel-dashboard:active, .opel-cta:active { transform: translateY(1px) scale(0.98); box-shadow: none; }
     }
-
-    .opel-nav .opel-dropdown {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 4px;
-      width: min(30rem, calc(100vw - 24px));
-      left: 50%;
-      transform: translateX(-50%);
+    @media (prefers-reduced-motion: no-preference) {
+      .opel-nav details[open] > .opel-dropdown { transform-origin: top center; animation: opel-menu-open 240ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+      .opel-nav details[open] > .opel-dropdown > a { animation: opel-link-in 180ms ease-out 45ms backwards; }
+      .opel-nav details[open] > .opel-dropdown > a:nth-child(2) { animation-delay: 80ms; }
+      @keyframes opel-menu-open { from { opacity: 0; translate: 0 -7px; scale: 0.98 0.9; } to { opacity: 1; translate: 0 0; scale: 1; } }
+      @keyframes opel-link-in { from { opacity: 0; translate: 0 -4px; } to { opacity: 1; translate: 0 0; } }
     }
-
-    .opel-nav .opel-dropdown a {
-      overflow-wrap: anywhere;
+    .opel-nav .opel-dropdown { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; width: min(30rem, calc(100vw - 24px)); left: 50%; transform: translateX(-50%); }
+    .opel-nav .opel-dropdown a { overflow-wrap: anywhere; }
+    .opel-nav .opel-dropdown:not(:has(> a:nth-child(3))) { grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); grid-auto-flow: column; width: max-content; max-width: calc(100vw - 24px); }
+    @media (max-width: 47.999rem) { .opel-nav details { position: static; } .opel-nav .opel-dropdown { top: 100%; } }
+    .opel-dropdown a { border: 0.5px solid #444; }
+    .opel-dropdown a:hover, .opel-dropdown a:focus-visible { border-color: #777; }
+    .opel-nav details { position: static; }
+    .opel-header .opel-nav .opel-dropdown { top: 100%; left: 50%; transform: translateX(-50%); transform-origin: top center; padding: 10px; gap: 6px; box-shadow: 0 14px 30px rgb(0 0 0 / 28%); }
+    .opel-nav, .opel-nav details, .opel-nav summary { height: 100%; }
+    @media (prefers-reduced-motion: no-preference) {
+      .opel-nav details[open] > .opel-dropdown { animation: opel-panel-in 180ms ease-out both; }
+      .opel-nav details[data-closing] > .opel-dropdown { animation: opel-panel-out 120ms ease-in both; pointer-events: none; }
+      @keyframes opel-panel-in { from { opacity: 0; translate: 0 -6px; scale: 0.98; } to { opacity: 1; translate: 0 0; scale: 1; } }
+      @keyframes opel-panel-out { from { opacity: 1; } to { opacity: 0; translate: 0 -4px; scale: 0.98; } }
     }
-
-    .opel-nav .opel-dropdown:not(:has(> a:nth-child(3))) {
-      grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-      grid-auto-flow: column;
-      width: max-content;
-      max-width: calc(100vw - 24px);
-    }
-
-    @media (max-width: 47.999rem) {
-      .opel-nav details {
-        position: static;
-      }
-
-      .opel-nav .opel-dropdown {
-        top: 100%;
-      }
-    }
-
-    .opel-dropdown a {
-      border: 0.5px solid #444;
-    }
-
-    .opel-dropdown a:hover,
-    .opel-dropdown a:focus-visible {
-      border-color: #777;
-    }
+    .opel-nav, .opel-nav details, .opel-nav summary { height: auto; }
+    .opel-nav details { position: relative; }
+    .opel-nav summary { position: relative; padding: 5px 10px; line-height: 1.25; border-radius: 6px; }
+    .opel-header .opel-nav .opel-dropdown { top: calc(100% + 4px); left: 50%; transform: translateX(-50%); }
+    .opel-nav details[open] > summary::before { pointer-events: none; }
+    .opel-nav details[open]::after { content: ""; position: absolute; top: 100%; left: 0; right: 0; height: 4px; }
+    @media (max-width: 47.999rem) { .opel-header .opel-nav .opel-dropdown { max-width: calc(100vw - 8rem); } }
+    .opel-nav summary { box-shadow: inset 0 0 0 1px transparent; }
+    .opel-nav summary:hover, .opel-nav details[open] > summary { background: transparent; box-shadow: inset 0 0 0 1px #444444; }
+    .opel-nav summary::before { content: none; }
+    @media (prefers-reduced-motion: no-preference) { .opel-nav summary { transition: box-shadow 160ms ease; } }
+    body { isolation: isolate; background: #0a0a0a; }
+    #floating-dots { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+    #main-content { position: relative; z-index: 1; background: transparent; }
+    #recent-projects { max-width: 1200px; margin-inline: auto; padding: clamp(64px, 9vw, 120px) clamp(12px, 3vw, 40px); color: #fff; }
+    .projects-heading { display: flex; align-items: end; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; }
+    .projects-label { color: #a2b9d5; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }
+    #projects-title { margin: 6px 0 0; font-size: clamp(30px, 4vw, 48px); line-height: 1.1; letter-spacing: -0.04em; }
+    .projects-profile, .projects-status { color: #b5c0ce; font-size: 14px; }
+    .projects-profile:hover { color: #fff; }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .project-card { display: flex; flex-direction: column; gap: 12px; min-height: 170px; padding: 22px; border: 1px solid #343a44; border-radius: 14px; background: linear-gradient(145deg, #111923, #101216 72%); color: #fff; text-decoration: none; overflow-wrap: anywhere; }
+    .project-card:is(:hover, :focus-visible) { border-color: #7799bd; background: linear-gradient(145deg, #152335, #10151c 72%); }
+    .project-card h3 { margin: 0; font-size: 19px; line-height: 1.25; }
+    .project-card p { margin: 0; color: #c0c7d0; font-size: 14px; line-height: 1.5; }
+    .project-card small { margin-top: auto; padding-top: 12px; color: #9eafc3; font-size: 12px; }
+    @media (prefers-reduced-motion: no-preference) { .project-card { transition: transform 180ms ease, border-color 180ms ease; } .project-card:hover { transform: translateY(-3px); } }
+    @media (max-width: 800px) { .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 520px) { .projects-grid { grid-template-columns: 1fr; } }
+    #recent-projects { padding-top: calc(clamp(64px, 9vw, 120px) - 38px); }
+    .project-card { background: linear-gradient(145deg, #0b1b33, #050d1c 80%); border-color: #25364e; }
+    .project-card:is(:hover, :focus-visible) { background: linear-gradient(145deg, #102746, #071326 80%); border-color: #52749c; }
+    #recent-projects .projects-grid { opacity: 1; visibility: visible; }
+    #recent-projects.awaiting-scroll .projects-grid { opacity: 0; visibility: hidden; transform: translateY(12px); }
+    @media (prefers-reduced-motion: no-preference) { #recent-projects .projects-grid { transition: opacity 350ms ease, transform 350ms ease; } }
   </style>
 </head>
-
 <body>
+  <canvas id="floating-dots" aria-hidden="true"></canvas>
   <header class="opel-header">
     <div class="opel-bar">
       <a class="opel-brand" href="./" aria-label="opel home">𖦏 opel</a>
-
       <nav class="opel-nav" aria-label="Main navigation">
         <details name="opel-navigation">
           <summary>Enlaces</summary>
           <div class="opel-dropdown">
-            <a href="opel.org.uk/links">Links</a>
-            <a href="opel.org.uk/languages">Languages</a>
-            <a href="dash.opel.org.uk">Dashboard</a>
-            <a href="opel.org.uk/lyrics">Lyrics</a>
-            <a href="lab.opel.org.uk">Lab</a>
-            <a href="opel.org.uk/map">Map</a>
+            <a href="/links">Enlaces</a>
+            <a href="/languages">Idiomas</a>
+            <a href="https://dash.opel.org.uk">Panel de control</a>
+            <a href="/lyrics">Letras</a>
+            <a href="https://lab.opel.org.uk">Laboratorio</a>
+            <a href="/map">Mapa</a>
           </div>
         </details>
-
         <details name="opel-navigation">
           <summary>Información</summary>
+          <div class="opel-dropdown"><a href="/info">Información</a></div>
+        </details>
+        <details name="opel-navigation">
+          <summary>Redes sociales</summary>
           <div class="opel-dropdown">
-            <a href="opel.org.uk/info">Info</a>
+            <a href="https://steamcommunity.com/id/opelascona">Steam</a>
+            <a href="https://github.com/xfwmk">GitHub</a>
+            <a href="https://faceit.com/en/players/opeI">FACEIT</a>
+            <a href="https://tiktok.com/@kianrega1">TikTok</a>
+            <a href="https://tiktok.com/@opel6666">TikTok #2</a>
           </div>
         </details>
       </nav>
-
-      <a class="opel-dashboard" href="https://dash.opel.org.uk">Dashboard</a>
+      <a class="opel-dashboard" href="https://dash.opel.org.uk">Panel de control</a>
     </div>
   </header>
-
   <main id="main-content" tabindex="-1">
     <section id="home-hero" class="opel-hero" aria-labelledby="hero-title">
       <div class="opel-hero-content">
         <h1 id="hero-title">opel.org.uk</h1>
-
         <p>
           Una plataforma para mi información y mis proyectos.<br>
-          Alojado y ejecutado completamente por mí con cloudflare.
+          Mantenida únicamente por Kian Rega en Cloudflare.
         </p>
-
-        <a class="opel-cta" href="https://opel.org.uk/info">
-          Comienza a explorar el sitio
-        </a>
+        <a class="opel-cta" href="https://opel.org.uk/info">Empieza a explorar el sitio</a>
       </div>
     </section>
+    <section id="recent-projects" data-github-user="xfwmk" aria-labelledby="projects-title">
+      <header class="projects-heading">
+        <div><span class="projects-label">GitHub</span><h2 id="projects-title">Proyectos recientes</h2></div>
+        <a class="projects-profile" hidden>Todos los repositorios ↗</a>
+      </header>
+      <p class="projects-status" role="status">Cargando proyectos…</p>
+      <div class="projects-grid"></div>
+    </section>
   </main>
+<script>
+  const nav = document.querySelector(".opel-nav");
+  const menus = [...nav.querySelectorAll("details")];
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let leaveTimer;
+  let fadeTimer;
 
-  <script>
-    const navigation = document.querySelector(".opel-nav");
-
-    function closeDropdown() {
-      const openMenu = navigation.querySelector("details[open]");
-      if (openMenu) openMenu.open = false;
+  function cancelClose() {
+    clearTimeout(leaveTimer);
+    clearTimeout(fadeTimer);
+    for (const menu of menus) delete menu.dataset.closing;
+  }
+  function openMenu(selected) {
+    cancelClose();
+    for (const menu of menus) {
+      menu.open = menu === selected;
     }
-
-    document.addEventListener("click", (event) => {
-      if (!navigation.contains(event.target) || event.target.closest("a")) {
-        closeDropdown();
+  }
+  function closeMenu(animate = true) {
+    cancelClose();
+    const menu = menus.find(item => item.open);
+    if (!menu) return;
+    if (!animate || reducedMotion.matches) {
+      menu.open = false;
+      return;
+    }
+    menu.dataset.closing = "";
+    fadeTimer = setTimeout(() => {
+      menu.open = false;
+      delete menu.dataset.closing;
+    }, 120);
+  }
+  for (const menu of menus) {
+    const summary = menu.querySelector("summary");
+    summary.addEventListener("pointerenter", event => {
+      if (event.pointerType === "mouse") openMenu(menu);
+    });
+    summary.addEventListener("click", event => {
+      event.preventDefault();
+      if (menu.open) closeMenu();
+      else openMenu(menu);
+    });
+  }
+  nav.addEventListener("pointerenter", cancelClose);
+  nav.addEventListener("pointerleave", event => {
+    if (event.pointerType !== "mouse") return;
+    if (nav.querySelector(".opel-dropdown :focus-visible")) return;
+    leaveTimer = setTimeout(() => closeMenu(), 110);
+  });
+  document.addEventListener("pointerdown", event => {
+    if (!nav.contains(event.target)) closeMenu();
+  });
+  document.addEventListener("focusin", event => {
+    if (nav.contains(event.target)) cancelClose();
+    else closeMenu(false);
+  });
+  nav.addEventListener("click", event => {
+    if (event.target.closest(".opel-dropdown a")) closeMenu(false);
+  });
+  document.addEventListener("keydown", event => {
+    if (event.key !== "Escape") return;
+    const menu = menus.find(item => item.open);
+    if (!menu) return;
+    if (nav.contains(document.activeElement)) {
+      menu.querySelector("summary").focus();
+    }
+    closeMenu(false);
+  });
+</script>
+<script>
+(() => {
+  const canvas = document.getElementById("floating-dots");
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  const dotColor = "72, 72, 72";
+  let dots = [];
+  let width, height, lastTime, frame;
+  function makeDot(scattered = false) {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = (5 + Math.random() * 10) * 0.5;
+    const life = 8 + Math.random() * 10;
+    return {
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      radius: 0.8 + Math.random() * 1.3,
+      age: scattered ? Math.random() * life : 0,
+      life
+    };
+  }
+  function draw(dt) {
+    ctx.clearRect(0, 0, width, height);
+    for (let i = 0; i < dots.length; i++) {
+      let dot = dots[i];
+      dot.age += dt;
+      if (dot.age >= dot.life) dot = dots[i] = makeDot();
+      dot.x += dot.vx * dt;
+      dot.y += dot.vy * dt;
+      const fade = Math.min(1, dot.age / 2, (dot.life - dot.age) / 2);
+      ctx.fillStyle = `rgba(${dotColor}, ${fade * 0.85})`;
+      ctx.beginPath();
+      ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  function tick(now) {
+    draw(Math.min((now - lastTime) / 1000, 0.05));
+    lastTime = now;
+    frame = requestAnimationFrame(tick);
+  }
+  function refresh() {
+    cancelAnimationFrame(frame);
+    draw(0);
+    if (document.hidden || reducedMotion.matches) return;
+    lastTime = performance.now();
+    frame = requestAnimationFrame(tick);
+  }
+  function resize() {
+    width = canvas.clientWidth;
+    height = canvas.clientHeight;
+    const scale = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(width * scale);
+    canvas.height = Math.round(height * scale);
+    ctx.setTransform(scale, 0, 0, scale, 0, 0);
+    const count = Math.min(220, Math.ceil(width * height / 8000));
+    dots = Array.from({ length: count }, () => makeDot(true));
+    refresh();
+  }
+  window.addEventListener("resize", resize);
+  document.addEventListener("visibilitychange", refresh);
+  reducedMotion.addEventListener("change", refresh);
+  resize();
+})();
+</script>
+<script>
+(async () => {
+  const section = document.querySelector("#recent-projects");
+  const user = section.dataset.githubUser.trim();
+  const status = section.querySelector(".projects-status");
+  const profile = section.querySelector(".projects-profile");
+  const grid = section.querySelector(".projects-grid");
+  if (!user || user === "YOUR_GITHUB_USERNAME") {
+    status.textContent = "añade un nombre de usuario";
+    return;
+  }
+  const handle = encodeURIComponent(user);
+  profile.href = `https://github.com/${handle}?tab=repositories`;
+  profile.hidden = false;
+  try {
+    const response = await fetch(
+      `https://api.github.com/users/${handle}/repos?type=owner&sort=pushed&direction=desc&per_page=6`
+    );
+    if (!response.ok) throw new Error(`GitHub returned ${response.status}`);
+    const repos = await response.json();
+    if (!repos.length) {
+      status.textContent = "Todavía no hay proyectos públicos.";
+      return;
+    }
+    const dateFormat = new Intl.DateTimeFormat("es", {
+      day: "numeric", month: "short", year: "numeric"
+    });
+    for (const repo of repos) {
+      const card = document.createElement("a");
+      card.className = "project-card";
+      card.href = repo.html_url;
+      const title = document.createElement("h3");
+      title.textContent = repo.name;
+      card.append(title);
+      if (repo.description) {
+        const description = document.createElement("p");
+        description.textContent = repo.description;
+        card.append(description);
       }
-    });
-
-    document.addEventListener("focusin", (event) => {
-      if (!navigation.contains(event.target)) closeDropdown();
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key !== "Escape") return;
-
-      const openMenu = navigation.querySelector("details[open]");
-      if (openMenu) {
-        openMenu.open = false;
-        openMenu.querySelector("summary").focus();
+      const meta = document.createElement("small");
+      const details = [];
+      if (repo.language) details.push(repo.language);
+      if (repo.pushed_at) {
+        details.push(`Último envío: ${dateFormat.format(new Date(repo.pushed_at))}`);
       }
-    });
-  </script>
+      meta.textContent = details.join(" · ");
+      card.append(meta);
+      grid.append(card);
+    }
+    status.hidden = true;
+    function updateProjectVisibility() {
+      const page = document.scrollingElement;
+      const distanceFromBottom = page.scrollHeight - page.clientHeight - page.scrollTop;
+      if (distanceFromBottom <= 200) {
+        section.classList.remove("awaiting-scroll");
+      } else if (distanceFromBottom > 420) {
+        section.classList.add("awaiting-scroll");
+      }
+    }
+    window.addEventListener("scroll", updateProjectVisibility, { passive: true });
+    window.addEventListener("resize", updateProjectVisibility);
+    updateProjectVisibility();
+  } catch {
+    status.textContent = "No se pudieron cargar los proyectos. Usa «Todos los repositorios» para verlos en GitHub.";
+  }
+})();
+</script>
 </body>
 </html>
