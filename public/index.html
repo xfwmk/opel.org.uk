@@ -518,6 +518,134 @@
       z-index: 1;
       background: transparent;
     }
+
+    #recent-projects {
+      max-width: 1200px;
+      margin-inline: auto;
+      padding: clamp(64px, 9vw, 120px) clamp(12px, 3vw, 40px);
+      color: #fff;
+    }
+
+    .projects-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .projects-label {
+      color: #a2b9d5;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    #projects-title {
+      margin: 6px 0 0;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .projects-profile,
+    .projects-status {
+      color: #b5c0ce;
+      font-size: 14px;
+    }
+
+    .projects-profile:hover { color: #fff; }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 170px;
+      padding: 22px;
+      border: 1px solid #343a44;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #111923, #101216 72%);
+      color: #fff;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    .project-card:is(:hover, :focus-visible) {
+      border-color: #7799bd;
+      background: linear-gradient(145deg, #152335, #10151c 72%);
+    }
+
+    .project-card h3 {
+      margin: 0;
+      font-size: 19px;
+      line-height: 1.25;
+    }
+
+    .project-card p {
+      margin: 0;
+      color: #c0c7d0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .project-card small {
+      margin-top: auto;
+      padding-top: 12px;
+      color: #9eafc3;
+      font-size: 12px;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .project-card { transition: transform 180ms ease, border-color 180ms ease; }
+      .project-card:hover { transform: translateY(-3px); }
+    }
+
+    @media (max-width: 800px) {
+      .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 520px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    #recent-projects {
+      padding-top: calc(clamp(64px, 9vw, 120px) - 38px);
+    }
+
+    .project-card {
+      background: linear-gradient(145deg, #0b1b33, #050d1c 80%);
+      border-color: #25364e;
+    }
+
+    .project-card:is(:hover, :focus-visible) {
+      background: linear-gradient(145deg, #102746, #071326 80%);
+      border-color: #52749c;
+    }
+
+    #recent-projects .projects-grid {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #recent-projects.awaiting-scroll .projects-grid {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      #recent-projects .projects-grid {
+        transition: opacity 350ms ease, transform 350ms ease;
+      }
+    }
+
   </style>
 </head>
 
@@ -546,6 +674,18 @@
             <a href="/info">Info</a>
           </div>
         </details>
+
+        <details name="opel-navigation">
+          <summary>Socials</summary>
+          <div class="opel-dropdown">
+            <a href="https://steamcommunity.com/id/opelascona">Steam</a>
+            <a href="https://github.com/xfwmk">GitHub</a>
+            <a href="https://faceit.com/en/players/opeI">FACEIT</a>
+            <a href="https://tiktok.com/@kianrega1">TikTok</a>
+            <a href="https://tiktok.com/@opel6666">TikTok #2</a>
+          </div>
+        </details>
+
       </nav>
 
       <a class="opel-dashboard" href="https://dash.opel.org.uk">Dashboard</a>
@@ -559,7 +699,7 @@
 
         <p>
           One platform for my information and projects.<br>
-          Hosted & run alone by me with Cloudflare.
+          Maintained alone by Kian Rega on Cloudflare.
         </p>
 
         <a class="opel-cta" href="https://opel.org.uk/info">
@@ -567,6 +707,22 @@
         </a>
       </div>
     </section>
+
+    <section id="recent-projects"
+          data-github-user="xfwmk"
+          aria-labelledby="projects-title">
+    <header class="projects-heading">
+      <div>
+        <span class="projects-label">GitHub</span>
+        <h2 id="projects-title">Recent projects</h2>
+      </div>
+      <a class="projects-profile" hidden>All repositories ↗</a>
+    </header>
+
+    <p class="projects-status" role="status">Loading projects…</p>
+    <div class="projects-grid"></div>
+  </section>
+
   </main>
 
 <script>
@@ -730,6 +886,86 @@
   document.addEventListener("visibilitychange", refresh);
   reducedMotion.addEventListener("change", refresh);
   resize();
+})();
+</script>
+<script>
+(async () => {
+  const section = document.querySelector("#recent-projects");
+  const user = section.dataset.githubUser.trim();
+  const status = section.querySelector(".projects-status");
+  const profile = section.querySelector(".projects-profile");
+  const grid = section.querySelector(".projects-grid");
+
+  if (!user || user === "YOUR_GITHUB_USERNAME") {
+    status.textContent = "add username";
+    return;
+  }
+
+  const handle = encodeURIComponent(user);
+  profile.href = `https://github.com/${handle}?tab=repositories`;
+  profile.hidden = false;
+
+  try {
+    const response = await fetch(
+      `https://api.github.com/users/${handle}/repos?type=owner&sort=pushed&direction=desc&per_page=6`
+    );
+    if (!response.ok) throw new Error(`GitHub returned ${response.status}`);
+
+    const repos = await response.json();
+    if (!repos.length) {
+      status.textContent = "No public projects yet.";
+      return;
+    }
+
+    const dateFormat = new Intl.DateTimeFormat(undefined, {
+      day: "numeric", month: "short", year: "numeric"
+    });
+
+    for (const repo of repos) {
+      const card = document.createElement("a");
+      card.className = "project-card";
+      card.href = repo.html_url;
+
+      const title = document.createElement("h3");
+      title.textContent = repo.name;
+      card.append(title);
+
+      if (repo.description) {
+        const description = document.createElement("p");
+        description.textContent = repo.description;
+        card.append(description);
+      }
+
+      const meta = document.createElement("small");
+      const details = [];
+      if (repo.language) details.push(repo.language);
+      if (repo.pushed_at) {
+        details.push(`Pushed ${dateFormat.format(new Date(repo.pushed_at))}`);
+      }
+      meta.textContent = details.join(" · ");
+      card.append(meta);
+      grid.append(card);
+    }
+
+    status.hidden = true;
+    function updateProjectVisibility() {
+      const page = document.scrollingElement;
+      const distanceFromBottom =
+        page.scrollHeight - page.clientHeight - page.scrollTop;
+
+      if (distanceFromBottom <= 200) {
+        section.classList.remove("awaiting-scroll");
+      } else if (distanceFromBottom > 420) {
+        section.classList.add("awaiting-scroll");
+      }
+    }
+
+    window.addEventListener("scroll", updateProjectVisibility, { passive: true });
+    window.addEventListener("resize", updateProjectVisibility);
+    updateProjectVisibility();
+  } catch {
+    status.textContent = "Projects couldn’t load. Use “All repositories” to view them on GitHub.";
+  }
 })();
 </script>
 </body>
