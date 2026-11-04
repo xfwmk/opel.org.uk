@@ -658,18 +658,23 @@
     }
 
     #about-me dl {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
-      gap: 10px;
       margin: 0;
-    }
-
-    #about-me dl > div {
-      padding: 12px 14px;
+      padding: 4px clamp(12px, 2vw, 22px);
       border: 1px solid #25364e;
       border-radius: 14px;
       background: linear-gradient(145deg, #0b1b33, #050d1c 80%);
-      overflow-wrap: anywhere;
+    }
+
+    #about-me dl > div {
+      display: grid;
+      grid-template-columns: min(38%, 11rem) minmax(0, 1fr);
+      align-items: baseline;
+      gap: 12px;
+      padding-block: 10px;
+    }
+
+    #about-me dl > div + div {
+      border-top: 1px solid #25364e;
     }
 
     #about-me dt {
@@ -678,12 +683,15 @@
     }
 
     #about-me dd {
-      margin: 3px 0 0;
+      margin: 0;
       font-size: 15px;
       line-height: 1.35;
       overflow-wrap: anywhere;
     }
 
+    #recent-projects {
+      padding-bottom: 64px;
+    }
   </style>
 </head>
 
@@ -766,11 +774,26 @@
         <h2 id="about-title">About me</h2>
       </header>
       <dl>
-        <div><dt>Name</dt><dd>Kian Rega</dd></div>
-        <div><dt>GCSE options</dt><dd>Computer Science, Spanish & History</dd></div>
-        <div><dt>Spoken languages</dt><dd>Spanish, English, Galician & Persian</dd></div>
-        <div><dt>Languages I’m learning</dt><dd>Albanian & Russian</dd></div>
-        <div><dt>Coding languages</dt><dd>Javascript, Shellscript, Python</dd></div>
+        <div>
+          <dt>Name</dt>
+          <dd>Kian Rega</dd>
+        </div>
+        <div>
+          <dt>GCSE subjects</dt>
+          <dd>Spanish, History, Computer science</dd>
+        </div>
+        <div>
+          <dt>Spoken languages</dt>
+          <dd>Spanish, Persian, English, Galician</dd>
+        </div>
+        <div>
+          <dt>Languages I’m learning</dt>
+          <dd>Russian, Albanian</dd>
+        </div>
+        <div>
+          <dt>Coding languages</dt>
+          <dd>Shellscript, Python</dd>
+        </div>
       </dl>
     </section>
 
