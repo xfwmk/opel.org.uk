@@ -542,7 +542,8 @@
       text-transform: uppercase;
     }
 
-    #projects-title {
+    #projects-title,
+    #about-title {
       margin: 6px 0 0;
       font-size: clamp(30px, 4vw, 48px);
       line-height: 1.1;
@@ -629,21 +630,58 @@
       border-color: #52749c;
     }
 
-    #recent-projects .projects-grid {
+    #recent-projects .projects-grid,
+    #about-me dl {
       opacity: 1;
       visibility: visible;
     }
 
-    #recent-projects.awaiting-scroll .projects-grid {
+    #recent-projects.awaiting-scroll .projects-grid,
+    #recent-projects.awaiting-scroll + #about-me dl {
       opacity: 0;
       visibility: hidden;
       transform: translateY(12px);
     }
 
     @media (prefers-reduced-motion: no-preference) {
-      #recent-projects .projects-grid {
+      #recent-projects .projects-grid,
+      #about-me dl {
         transition: opacity 350ms ease, transform 350ms ease;
       }
+    }
+
+
+    #about-me {
+      max-width: 1200px;
+      margin-inline: auto;
+      padding: 0 clamp(12px, 3vw, 40px) 32px;
+    }
+
+    #about-me dl {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
+      gap: 10px;
+      margin: 0;
+    }
+
+    #about-me dl > div {
+      padding: 12px 14px;
+      border: 1px solid #25364e;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #0b1b33, #050d1c 80%);
+      overflow-wrap: anywhere;
+    }
+
+    #about-me dt {
+      color: #a2b9d5;
+      font-size: 13px;
+    }
+
+    #about-me dd {
+      margin: 3px 0 0;
+      font-size: 15px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
     }
 
   </style>
@@ -721,7 +759,20 @@
 
     <p class="projects-status" role="status">Loading projects…</p>
     <div class="projects-grid"></div>
-  </section>
+    </section>
+
+    <section id="about-me" aria-labelledby="about-title">
+      <header class="projects-heading">
+        <h2 id="about-title">About me</h2>
+      </header>
+      <dl>
+        <div><dt>Name</dt><dd>Kian Rega</dd></div>
+        <div><dt>GCSE options</dt><dd>Computer Science, Spanish & History</dd></div>
+        <div><dt>Spoken languages</dt><dd>Spanish, English, Galician & Persian</dd></div>
+        <div><dt>Languages I’m learning</dt><dd>Albanian & Russian</dd></div>
+        <div><dt>Coding languages</dt><dd>Javascript, Shellscript, Python</dd></div>
+      </dl>
+    </section>
 
   </main>
 
@@ -896,6 +947,22 @@
   const profile = section.querySelector(".projects-profile");
   const grid = section.querySelector(".projects-grid");
 
+  function updateProjectVisibility() {
+    const page = document.scrollingElement;
+    const distanceFromBottom =
+      page.scrollHeight - page.clientHeight - page.scrollTop;
+
+    if (distanceFromBottom <= 200) {
+      section.classList.remove("awaiting-scroll");
+    } else if (distanceFromBottom > 420) {
+      section.classList.add("awaiting-scroll");
+    }
+  }
+
+  window.addEventListener("scroll", updateProjectVisibility, { passive: true });
+  window.addEventListener("resize", updateProjectVisibility);
+  updateProjectVisibility();
+
   if (!user || user === "YOUR_GITHUB_USERNAME") {
     status.textContent = "add username";
     return;
@@ -948,20 +1015,6 @@
     }
 
     status.hidden = true;
-    function updateProjectVisibility() {
-      const page = document.scrollingElement;
-      const distanceFromBottom =
-        page.scrollHeight - page.clientHeight - page.scrollTop;
-
-      if (distanceFromBottom <= 200) {
-        section.classList.remove("awaiting-scroll");
-      } else if (distanceFromBottom > 420) {
-        section.classList.add("awaiting-scroll");
-      }
-    }
-
-    window.addEventListener("scroll", updateProjectVisibility, { passive: true });
-    window.addEventListener("resize", updateProjectVisibility);
     updateProjectVisibility();
   } catch {
     status.textContent = "Projects couldn’t load. Use “All repositories” to view them on GitHub.";
