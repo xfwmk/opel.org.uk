@@ -604,8 +604,18 @@
     }
 
     @media (prefers-reduced-motion: no-preference) {
-      .project-card { transition: transform 180ms ease, border-color 180ms ease; }
-      .project-card:hover { transform: translateY(-3px); }
+      #recent-projects .projects-grid,
+      #about-me dl {
+        transition:
+          opacity 350ms ease,
+          transform 350ms ease,
+          visibility 0s;
+      }
+
+      #recent-projects.awaiting-scroll .projects-grid,
+      #recent-projects.awaiting-scroll + #about-me dl {
+        transition-delay: 0s, 0s, 350ms;
+      }
     }
 
     @media (max-width: 800px) {
@@ -649,7 +659,6 @@
         transition: opacity 350ms ease, transform 350ms ease;
       }
     }
-
 
     #about-me {
       max-width: 1200px;
@@ -780,19 +789,19 @@
         </div>
         <div>
           <dt>GCSE subjects</dt>
-          <dd>Spanish, History & Computer science</dd>
+          <dd>Spanish, History, Computer science</dd>
         </div>
         <div>
           <dt>Spoken languages</dt>
-          <dd>Spanish, Persian, English & Galician</dd>
+          <dd>Spanish, Persian, English, Galician</dd>
         </div>
         <div>
           <dt>Languages I’m learning</dt>
-          <dd>Russian & Albanian</dd>
+          <dd>Russian, Albanian</dd>
         </div>
         <div>
           <dt>Coding languages</dt>
-          <dd>Shellscript & Python</dd>
+          <dd>Shellscript, Python</dd>
         </div>
       </dl>
     </section>
