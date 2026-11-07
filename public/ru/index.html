@@ -1004,7 +1004,7 @@
     const distanceFromBottom =
       page.scrollHeight - page.clientHeight - page.scrollTop;
 
-    if (distanceFromBottom <= 200) {
+    if (distanceFromBottom <= 500) {
       section.classList.remove("awaiting-scroll");
     } else if (distanceFromBottom > 655) {
       section.classList.add("awaiting-scroll");
