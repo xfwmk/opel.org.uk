@@ -42,5 +42,6 @@ Created: 30-09-2026
 
 # Subdomains:
   - dash.opel.org.uk
+  - lab.opel.org.uk
   - stocks.opel.org.uk (under construction)
   - mail.opel.org.uk (under construction)
