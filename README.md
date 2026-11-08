@@ -11,6 +11,7 @@ Created: 30-09-2026
   - links
   - info
   - 404
+  - startpage
 # [languages](https://opel.org.uk/languages/)
   - es
   - ru
