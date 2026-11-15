@@ -1,1 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>𖦏 opel | Addiction</title>
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 
+  <style>
+    a,
+    a:hover,
+    a:focus,
+    a:active,
+    a:visited {
+      text-decoration: none;
+    }
+
+    :root {
+      color-scheme: dark;
+      --text: #ffffff;
+      --muted: #888888;
+      --card: #0b0b0b;
+      --grey: #666666;
+      --grey-hover: #999999;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #000000 url("bg.jpg") 
+        center center / cover fixed no-repeat;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: var(--text);
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 30px 40px 60px;
+    }
+
+    .brand {
+      display: block;
+      width: fit-content;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 25px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+
+    .brand:hover,
+    .brand:focus-visible {
+      opacity: 0.7;
+      text-decoration: none;
+    }
+
+    .lyrics {
+      width: 80%;
+      margin: 0 auto;
+      white-space: pre-wrap;
+      line-height: 1.5;
+      text-align: center;
+      font-size: 24px;
+      color: #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="lyrics">
+Ты мне дарил свою любовь, я ничего не понимала
+И приходил ко мне ты вновь такого я давно искала
+Подумать даже не могла - ты был такой, как я хотела
+И мне казалось я спала, с тобою рядом я летела
+
+Припев:
+Я знаю точно нам с тобой не будет плохо в этом мире
+Глаза закрой и тайну открой о том, что мы - другие
+Я знаю точно нам с тобой не будет плохо в этом мире
+Глаза закрой и тайну открой о том, что мы - другие
+
+Ты знал во сколько мне вставать, со мною был везде ты рядом
+Меня умел ты понимать и знал когда и что мне надо
+В тебя влюбилась я тогда, нашла я то, что так искала
+И наконец-то поняла что раньше я не понимала
+
+Припев:
+Я знаю точно нам с тобой не будет плохо в этом мире
+Глаза закрой и тайну открой о том, что мы - другие
+Я знаю точно нам с тобой не будет плохо в этом мире
+Глаза закрой и тайну открой о том, что мы - другие
+  </div>
+<script>
+
+const MUSIC_FILE = "addiction.mp3"; 
+
+const music = new Audio(MUSIC_FILE);
+music.loop = true;
+music.volume = 0.375;
+
+document.addEventListener("keydown", async (event) => {
+  if (event.key.toLowerCase() === "p" && !event.repeat) {
+    if (music.paused) {
+      try {
+        await music.play();
+      } catch (error) {
+        console.error("Could not play music:", error);
+      }
+    } else {
+      music.pause();
+    }
+  }
+});
+</script>
+</body>
+</html>
