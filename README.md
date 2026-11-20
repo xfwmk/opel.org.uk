@@ -33,11 +33,11 @@ Created: 30-09-2026
   - myordinarylife
   - trustme
   - givemeyourlove
-   # [French lyrics](https://opel.org.uk/lyrics/french)
+   [French lyrics](https://opel.org.uk/lyrics/french)
    - amourplastique
    - roi
    - mai
-   # [Russian lyrics](https://opel.org.uk/lyrics/russian)
+   [Russian lyrics](https://opel.org.uk/lyrics/russian)
    - видноне
    - онаговорит
    - розвоевино
