@@ -34,11 +34,11 @@ Created: 30-09-2026
   - trustme
   - givemeyourlove
   
-  - # French lyrics
+  - # [French lyrics](https://opel.org.uk/lyrics/french)
     - amourplastique
     - roi
     - mai
-  - # Russian lyrics
+  - # [Russian lyrics](https://opel.org.uk/lyrics/russian)
     - видноне
     - онаговорит
     - розвоевино
