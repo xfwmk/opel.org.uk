@@ -35,20 +35,20 @@ Created: 30-09-2026
   - givemeyourlove
     
   [French lyrics](https://opel.org.uk/lyrics/french)
-    - amourplastique
-    - roi
-    - mai
+      - amourplastique
+      - roi
+      - mai
      
   [Russian lyrics](https://opel.org.uk/lyrics/russian)
-    - видноне
-    - онаговорит
-    - розвоевино
-    - воруюалкоголь
-    - весна
-    - восемнадцать
-    - целуйменя
-    - малотебя
-    - отпустименя
+      - видноне
+      - онаговорит
+      - розвоевино
+      - воруюалкоголь
+      - весна
+      - восемнадцать
+      - целуйменя
+      - малотебя
+      - отпустименя
 
 # Subdomains:
   - dash.opel.org.uk
