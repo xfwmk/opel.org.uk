@@ -25,6 +25,15 @@ Created: 30-09-2026
   - binary
   - pipes
 #  [lyrics](https://opel.org.uk/lyrics/)
+  - nekaljubise
+  - solotu
+  - dejavu
+  - addiction
+  - afterdark
+  - myordinarylife
+  - trustme
+  - givemeyourlove
+  
   - # French lyrics
     - amourplastique
     - roi
@@ -39,13 +48,6 @@ Created: 30-09-2026
     - целуйменя
     - малотебя
     - отпустименя
-  
-  - nekaljubise
-  - solotu
-  - dejavu
-  - addiction
-  - afterdark
-  - myordinarylife
 
 # Subdomains:
   - dash.opel.org.uk
