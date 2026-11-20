@@ -25,21 +25,27 @@ Created: 30-09-2026
   - binary
   - pipes
 #  [lyrics](https://opel.org.uk/lyrics/)
+  - # French lyrics
+    - amourplastique
+    - roi
+    - mai
+  - # Russian lyrics
+    - видноне
+    - онаговорит
+    - розвоевино
+    - воруюалкоголь
+    - весна
+    - восемнадцать
+    - целуйменя
+    - малотебя
+    - отпустименя
+  
   - nekaljubise
   - solotu
-  - весна
-  - восемнадцать
-  - целуйменя
-  - малотебя
-  - отпустименя
   - dejavu
   - addiction
   - afterdark
   - myordinarylife
-  - видноне
-  - онаговорит
-  - розвоевино
-  - воруюалкоголь
 
 # Subdomains:
   - dash.opel.org.uk
