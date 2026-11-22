@@ -1,1 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>𖦏 opel | Весна</title>
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 
+  <style>
+    a,
+    a:hover,
+    a:focus,
+    a:active,
+    a:visited {
+      text-decoration: none;
+    }
+
+    :root {
+      color-scheme: dark;
+      --text: #ffffff;
+      --muted: #888888;
+      --card: #0b0b0b;
+      --grey: #666666;
+      --grey-hover: #999999;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #000000 url("bg.jpg") 
+        center center / cover fixed no-repeat;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: var(--text);
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 30px 40px 60px;
+    }
+
+    .brand {
+      display: block;
+      width: fit-content;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 25px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+
+    .brand:hover,
+    .brand:focus-visible {
+      opacity: 0.7;
+      text-decoration: none;
+    }
+
+    .lyrics {
+      width: 80%;
+      margin: 0 auto;
+      white-space: pre-wrap;
+      line-height: 1.5;
+      text-align: center;
+      font-size: 24px;
+      color: #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="lyrics">
+[Куплет 1: Дмитрий Копотилов & Виктор Бондарюк]
+Спешит, торопится весна
+Она свела тебя с ума
+Ты красишь губы на бегу
+Ты заплатила за такси
+Зачем, сама себя спроси
+Бежать пытаешься по льду
+
+[Куплет 2: Элеонора Филимонова]
+Так, если в городе цветы, если все вокруг на ты
+И похоже, что вот-вот на реке растает лед
+Кружат голову мечты до небесной высоты
+Ускоряет время бег, тихо тает снег
+Когда уходит зима — весенний ветер поет
+Тебя он сводит с ума, ночами спать не дает
+Ты танцевала с другим, а кто-то ждал до утра:
+Он постоянно один, когда приходит весна
+
+[Куплет 1: Дмитрий Копотилов & Виктор Бондарюк]
+Ошибка это или нет
+Вопрос не задан, но ответ:
+Ты красишь губы на бегу
+Ты заплатила за такси
+Зачем, сама себя спроси
+Бежать пытаешься по льду
+
+[Куплет 2: Элеонора Филимонова]
+Так, если в городе цветы, если все вокруг на ты
+И похоже, что вот-вот на реке растает лед
+Кружат голову мечты до небесной высоты
+Ускоряет время бег, тихо тает снег
+Когда уходит зима — весенний ветер поет
+Тебя он сводит с ума, ночами спать не дает
+Ты танцевала с другим, а кто-то ждал до утра
+Он постоянно один, когда приходит весна
+Когда уходит зима — весенний ветер поет
+Тебя он сводит с ума, ночами спать не дает
+Ты танцевала с другим, а кто-то ждал до утра:
+Он постоянно один, когда приходит весна
+  </div>
+
+<script>
+const MUSIC_FILE = "весна.mp3"; 
+
+const music = new Audio(MUSIC_FILE);
+music.loop = true;
+music.volume = 0.375;
+
+document.addEventListener("keydown", async (event) => {
+  if (event.key.toLowerCase() === "p" && !event.repeat) {
+    if (music.paused) {
+      try {
+        await music.play();
+      } catch (error) {
+        console.error("Could not play music:", error);
+      }
+    } else {
+      music.pause();
+    }
+  }
+});
+</script>
+</body>
+</html>
