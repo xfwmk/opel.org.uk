@@ -33,6 +33,7 @@ Created: 30-09-2026
   - myordinarylife
   - trustme
   - givemeyourlove
+  - august
     
   [French lyrics](https://opel.org.uk/lyrics/french)
   - amourplastique
@@ -51,6 +52,7 @@ Created: 30-09-2026
   - отпустименя
   - айяйяй
   - сошласума
+  - август
 
 # Subdomains:
   - dash.opel.org.uk
