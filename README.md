@@ -32,6 +32,7 @@ Created: 30-09-2026
   - trustme
   - givemeyourlove
   - august
+  - thingsshesaid
     
   [French lyrics](https://opel.org.uk/lyrics/french)
   - amourplastique
