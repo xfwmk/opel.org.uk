@@ -1,1 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>𖦏 opel | Trust Me</title>
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 
+  <style>
+    a,
+    a:hover,
+    a:focus,
+    a:active,
+    a:visited {
+      text-decoration: none;
+    }
+
+    :root {
+      color-scheme: dark;
+      --text: #ffffff;
+      --muted: #888888;
+      --card: #0b0b0b;
+      --grey: #666666;
+      --grey-hover: #999999;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #000000 url("back.png") 
+        center center / cover fixed no-repeat;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: var(--text);
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 30px 40px 60px;
+    }
+
+    .brand {
+      display: block;
+      width: fit-content;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 25px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+
+    .brand:hover,
+    .brand:focus-visible {
+      opacity: 0.7;
+      text-decoration: none;
+    }
+
+    .lyrics {
+      width: 80%;
+      margin: 0 auto;
+      white-space: pre-wrap;
+      line-height: 1.5;
+      text-align: center;
+      font-size: 24px;
+      color: #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="lyrics">
+[Intro: Pandora & K-Slim]
+Yeah baby, you gotta trust me
+Whoa-whoa-whoa-oh, whoa-whoa-oh
+Whoa-whoa-whoa-oh, whoa-whoa-oh (Let you down)
+Whoa-whoa-whoa-oh, whoa-whoa-oh
+Whoa-whoa-whoa-oh, whoa-whoa-oh (Let you down)
+
+[Interlude: K-Slim]
+Huh
+Yo, dis my game
+
+[Verse 1: K-Slim]
+It's time to define the silly situation
+You and I together in relation
+Why, why, why won't you let me know?
+Which are the ways that I should go?
+It's time to tell, let me off the hook
+You know me, I'm playin' by the book
+And all I'm askin' in return
+Is for you to show me which way to turn
+
+[Chorus: Pandora]
+Trust me, I'll be the one who'll fight for you when things go wrong
+Trust me, I'll never let you down, let you down
+Trust me, I'll be the one who'll fight for you when things go wrong
+Trust me, I'll never let you down, let you down
+
+[Post-Chorus: Pandora]
+Whoa-whoa-whoa-oh, whoa-whoa-oh
+Whoa-whoa-whoa-oh, whoa-whoa-oh (Let you down)
+Whoa-whoa-whoa-oh, whoa-whoa-oh
+Whoa-whoa-whoa-oh, whoa-whoa-oh (Let you down)
+
+[Verse 2: K-Slim]
+Dr. Reject, let me ask you a question
+Is it for the fun or the real affection?
+There's no time, now you decide
+If the future in life is a positive one
+I keep on believin', still got the feelin'
+Got you on my mind and that's what's appealin'
+But livin' everything for the pleasure and lust
+Baby, it's a question of trust
+
+[Chorus: Pandora]
+Trust me, I'll be the one who'll fight for you when things go wrong
+Trust me, I'll never let you down, let you down
+Trust me, I'll be the one who'll fight for you when things go wrong
+Trust me, I'll never let you down, let you down
+
+[Post-Chorus: Pandora]
+Whoa-whoa-whoa-oh, whoa-whoa-oh
+Whoa-whoa-whoa-oh, whoa-whoa-oh (Let you down)
+Whoa-whoa-whoa-oh, whoa-whoa-oh
+Whoa-whoa-whoa-oh, whoa-whoa-oh (Let you down)
+[Instrumental]
+
+[Bridge: K-Slim]
+(You gotta trust me)
+(You gotta trust me)
+(You gotta trust me)
+
+[Chorus: Pandora]
+Trust me, I'll be the one who'll fight for you when things go wrong
+Trust me, I'll never let you down, let you down
+Trust me, I'll be the one who'll fight for you when things go wrong
+Trust me, I'll never let you down, let you down
+Trust me, I'll be the one who'll fight for you when things go wrong
+Trust me, I'll never let you down, let you down
+Trust me, I'll be the one who'll fight for you when things go wrong
+Trust me, I'll never let you down, let you down
+  </div>
+<script>
+
+const MUSIC_FILE = "trustme.mp3"; 
+
+const music = new Audio(MUSIC_FILE);
+music.loop = true;
+music.volume = 0.375;
+
+document.addEventListener("keydown", async (event) => {
+  if (event.key.toLowerCase() === "p" && !event.repeat) {
+    if (music.paused) {
+      try {
+        await music.play();
+      } catch (error) {
+        console.error("Could not play music:", error);
+      }
+    } else {
+      music.pause();
+    }
+  }
+});
+</script>
+</body>
+</html>
